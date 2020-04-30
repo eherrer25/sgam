@@ -8,122 +8,146 @@
 
         <title>SGAM Admin</title>
 
-        <!-- Styles -->
-        <link href="{{asset('assets/css/lib/weather-icons.css')}}" rel="stylesheet" />
-        <link href="{{asset('assets/css/lib/owl.carousel.min.css')}}" rel="stylesheet" />
-        <link href="{{asset('assets/css/lib/owl.theme.default.min.css')}}" rel="stylesheet" />
-        <link href="{{asset('assets/css/lib/font-awesome.min.css')}}" rel="stylesheet">
-        <link href="{{asset('assets/css/lib/themify-icons.css')}}" rel="stylesheet">
-        <link href="{{asset('assets/css/lib/menubar/sidebar.css')}}" rel="stylesheet">
-        <link href="{{asset('assets/css/lib/bootstrap.min.css')}}" rel="stylesheet">
-
-        <link href="{{asset('assets/css/lib/helper.css')}}" rel="stylesheet">
-        <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+        <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
     </head>
 
-    <body>
+    <body id="page-top">
+        <div id="wrapper">
 
-        @include('admin.layout.sidebar')
+            <!-- Sidebar -->
+            @include('admin.layout.sidebar')
+            <!-- End of Sidebar -->
 
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
 
-        <div class="header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-{{--                        <div class="float-left">--}}
-{{--                            <div class="hamburger sidebar-toggle">--}}
-{{--                                <span class="line"></span>--}}
-{{--                                <span class="line"></span>--}}
-{{--                                <span class="line"></span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-                        <div class="float-right">
-                            <ul>
-                                <li class="header-icon dib"><i class="ti-bell"></i>
-                                    <div class="drop-down">
-                                        <div class="dropdown-content-heading">
-                                            <span class="text-left">Recent Notifications</span>
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+
+                            <!-- Nav Item - Alerts -->
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell fa-fw"></i>
+                                    <!-- Counter - Alerts -->
+                                    <span class="badge badge-danger badge-counter">3+</span>
+                                </a>
+                                <!-- Dropdown - Alerts -->
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                    <h6 class="dropdown-header">
+                                        Alerts Center
+                                    </h6>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-file-alt text-white"></i>
+                                            </div>
                                         </div>
-                                        <div class="dropdown-content-body">
-                                            <ul>
-                                                <li>
-                                                    <a href="#">
-                                                        <div class="notification-content">
-                                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                                            <div class="notification-heading">Mr. John</div>
-                                                            <div class="notification-text">5 members joined today </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="text-center">
-                                                    <a href="#" class="more-link">See All</a>
-                                                </li>
-                                            </ul>
+                                        <div>
+                                            <div class="small text-gray-500">December 12, 2019</div>
+                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="header-icon dib"><span class="user-avatar">{{ Auth::user()->name }} <i class="ti-angle-down f-s-10"></i></span>
-                                    <div class="drop-down dropdown-profile">
-                                        <div class="dropdown-content-body">
-                                            <ul>
-                                                <li><a href="#"><i class="ti-user"></i> <span>Perfil</span></a></li>
-                                                <li>
-                                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                                        <i class="ti-power-off"></i> <span>Cerrar sesión</span>
-                                                    </a>
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                        @csrf
-                                                    </form>
-                                                </li>
-                                            </ul>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-success">
+                                                <i class="fas fa-donate text-white"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
+                                        <div>
+                                            <div class="small text-gray-500">December 7, 2019</div>
+                                            $290.29 has been deposited into your account!
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-warning">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">December 2, 2019</div>
+                                            Spending Alert: We've noticed unusually high spending for your account.
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                </div>
+                            </li>
+
+                            <div class="topbar-divider d-none d-sm-block"></div>
+
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Perfil
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Cerrar sesión
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                    <!-- End of Topbar -->
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+                        @yield('content')
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright © SGAM 2020</span>
                         </div>
                     </div>
-                </div>
+                </footer>
+                <!-- End of Footer -->
             </div>
+            <!-- End of Content Wrapper -->
         </div>
+        <!-- Bootstrap core JavaScript-->
+        <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
+        <!-- Core plugin JavaScript-->
+        <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-        <div class="content-wrap">
-            <div class="main">
-                <div class="container-fluid">
-                    @yield('content')
-                </div>
-            </div>
-        </div>
-        <!-- jquery vendor -->
-        <script src="{{asset('assets/js/lib/jquery.min.js')}}"></script>
-        <script src="{{asset('assets/js/lib/jquery.nanoscroller.min.js')}}"></script>
-        <!-- nano scroller -->
-        <script src="{{asset('assets/js/lib/menubar/sidebar.js')}}"></script>
-        <script src="{{asset('assets/js/lib/preloader/pace.min.js')}}"></script>
-        <!-- sidebar -->
-        <script src="{{asset('assets/js/lib/bootstrap.min.js')}}"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 
-        <!-- bootstrap -->
+        <!-- Page level plugins -->
+        <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
 
-        <script src="{{asset('assets/js/lib/circle-progress/circle-progress.min.js')}}"></script>
-        <script src="{{asset('assets/js/lib/circle-progress/circle-progress-init.js')}}"></script>
-
-        <script src="{{asset('assets/js/lib/morris-chart/raphael-min.js')}}"></script>
-        <script src="{{asset('assets/js/lib/morris-chart/morris.js')}}"></script>
-        <script src="{{asset('assets/js/lib/morris-chart/morris-init.js')}}"></script>
-
-        <!--  flot-chart js -->
-        <script src="{{asset('assets/js/lib/flot-chart/jquery.flot.js')}}"></script>
-        <script src="{{asset('assets/js/lib/flot-chart/jquery.flot.resize.js')}}"></script>
-        <script src="{{asset('assets/js/lib/flot-chart/flot-chart-init.js')}}"></script>
-        <!-- // flot-chart js -->
-
-        <script src="{{asset('assets/js/lib/weather/jquery.simpleWeather.min.js')}}"></script>
-        <script src="{{asset('assets/js/lib/weather/weather-init.js')}}"></script>
-        <script src="{{asset('assets/js/lib/owl-carousel/owl.carousel.min.js')}}"></script>
-        <script src="{{asset('assets/js/lib/owl-carousel/owl.carousel-init.js')}}"></script>
-        <script src="{{asset('assets/js/scripts.js')}}"></script>
-        <!-- scripit init-->
 
     </body>
 

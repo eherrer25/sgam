@@ -1,15 +1,11 @@
 @extends('admin.layout.main')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 p-r-0 title-margin-right">
-            <div class="page-header">
-                <div class="page-title">
-                    <h1>Hello, <span>Welcome Here</span></h1>
-                </div>
-            </div>
-        </div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
     </div>
+
     <section id="main-content">
         <div class="container">
             <div class="row justify-content-center">

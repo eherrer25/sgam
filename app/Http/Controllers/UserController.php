@@ -24,6 +24,7 @@ class UserController extends Controller
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
+
     public function newUser()
     {
         try{

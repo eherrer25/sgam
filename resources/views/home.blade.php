@@ -18,7 +18,7 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                                <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiMmU2MmMyZTctMDY3MS00NzEwLThkMWEtOGFkZDgxMDNkNTg1IiwidCI6IjM4YTFlMGExLWI2YjEtNDJlOS1iM2E5LTU5NzYyNjY3MGIxNyIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
+{{--                                <iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiMmU2MmMyZTctMDY3MS00NzEwLThkMWEtOGFkZDgxMDNkNTg1IiwidCI6IjM4YTFlMGExLWI2YjEtNDJlOS1iM2E5LTU5NzYyNjY3MGIxNyIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>--}}
                         </div>
                     </div>
                 </div>

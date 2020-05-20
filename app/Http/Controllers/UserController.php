@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Office;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -30,19 +31,23 @@ class UserController extends Controller
         try{
 
             $roles = Role::all();
+            $offices = Office::get();
 
         }catch (\Exception $e){
             report($e);
             abort(500);
         }
 
-        return view('users.new',compact('roles'));
+        return view('users.new',compact('roles','offices'));
     }
 
     public function createUser(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
+            'last_name' => 'required',
+            'status' => '',
+            'office_id' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed',
             'roles' => 'required'
@@ -52,6 +57,7 @@ class UserController extends Controller
 
             $input = $request->all();
             $input['password'] = Hash::make($input['password']);
+            $input['status'] = $request->status == false ? 0 : 1;
 
             $user = User::create($input);
             $user->assignRole($request->input('roles'));
@@ -68,20 +74,26 @@ class UserController extends Controller
     public function editUser($id)
     {
         try{
+
             $user = User::find($id);
-            $roles = Role::pluck('name','name')->all();
+            $roles = Role::all();
+            $offices = Office::get();
+
         }catch (\Exception $e){
             report($e);
             abort(500);
         }
 
-        return view('users.edit',compact('user','roles'));
+        return view('users.edit',compact('user','roles','offices'));
     }
 
     public function updateUser(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required',
+            'last_name' => 'required',
+            'status' => '',
+            'office_id' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
@@ -94,6 +106,8 @@ class UserController extends Controller
             }else{
                 $input = array_except($input,array('password'));
             }
+
+            $input['status'] = $request->status == false ? 0 : 1;
 
             $user = User::find($id);
             $user->update($input);

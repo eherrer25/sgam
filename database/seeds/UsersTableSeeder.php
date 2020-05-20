@@ -13,10 +13,21 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $office = new \App\Models\Office();
+        $office->name = 'Santiago';
+        $office->address = 'Alameda 130';
+        $office->commune = 'Santiago Centro';
+        $office->save();
+
+
         $user = User::create([
             'name' => 'admin',
+            'last_name' => 'super',
+            'status' => 1,
             'email' => 'admin@gmail.com',
+            'office_id' => $office->id,
             'password' => Hash::make('123456'),
+
         ]);
 
         $user->assignRole('admin');

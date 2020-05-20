@@ -27,11 +27,9 @@
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item active">
-        @role('Admin')
         <a class="nav-link" href="{{route('users-list')}}">
             <i class="fas fa-fw fa-users"></i>
             <span>Usuarios</span></a>
-        @endrole
     </li>
 {{--    <li class="nav-item">--}}
 {{--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">--}}

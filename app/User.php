@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Models\Office;
+use App\Models\Resident;
+use App\Models\UserResidentNursing;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,6 +14,16 @@ class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+
+    public function office()
+    {
+        return $this->belongsTo(Office::class);
+    }
+
+    public function nursings()
+    {
+        return $this->hasMany(UserResidentNursing::class);
+    }
 
     /**
      * The attributes that are mass assignable.

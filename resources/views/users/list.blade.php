@@ -22,7 +22,9 @@
                                     <th>id</th>
                                     <th>Nombre</th>
                                     <th>Email</th>
-                                    <th>Roles</th>
+                                    <th>Sucursal</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
                                     <th width="280px">Acciones</th>
                                 </tr>
                                 @foreach ($data as $key => $user)
@@ -30,6 +32,7 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>{{ $user->office->name }}</td>
                                         <td>
                                             @if(!empty($user->getRoleNames()))
                                                 @foreach($user->getRoleNames() as $v)
@@ -38,11 +41,14 @@
                                             @endif
                                         </td>
                                         <td>
+                                            <label class="badge {{ $user->status == 1 ? 'badge-success' : 'badge-danger' }}">{{ $user->status == 1 ? 'Activo' : 'Inactivo' }}</label>
+                                        </td>
+                                        <td>
                                             <a class="btn btn-primary" href="{{ route('user-edit',$user->id) }}">Edit</a>
                                             <form action="{{route('user-delete',$user->id)}}" method="POST" style="display: inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                <button type="submit" {{$user->id == 1 ? 'disabled' : ''}} class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>

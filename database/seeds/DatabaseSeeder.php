@@ -14,7 +14,11 @@ class DatabaseSeeder extends Seeder
          $this->call([
              RoleTableSeeder::class,
              UsersTableSeeder::class,
+<<<<<<< HEAD
 
+=======
+             OptionsSeeder::class,
+>>>>>>> 4444ceacfcfa8f524aaffb6dc9f6750946acd692
          ]);
     }
 }

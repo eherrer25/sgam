@@ -10,6 +10,11 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function listUsers(Request $request)
     {
         try{
@@ -57,7 +62,7 @@ class UserController extends Controller
 
             $input = $request->all();
             $input['password'] = Hash::make($input['password']);
-            $input['status'] = $request->status == false ? 0 : 1;
+            $input['status'] = $request->status = 1;
 
             $user = User::create($input);
             $user->assignRole($request->input('roles'));
@@ -89,6 +94,7 @@ class UserController extends Controller
 
     public function updateUser(Request $request, $id)
     {
+
         $this->validate($request, [
             'name' => 'required',
             'last_name' => 'required',

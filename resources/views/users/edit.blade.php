@@ -16,9 +16,9 @@
                     <div class="card">
                         <div class="card-header">Editar usuario</div>
                         <div class="card-body">
-                            <form action="{{route('user-update',$user->id)}}">
-                                @csrf
-                                @method('PATCH')
+                            <form action="{{route('user-update',$user->id)}}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="form-group">
@@ -59,7 +59,7 @@
                                             <label for="roles">Rol</label>
                                             <select name="roles" id="roles" class="form-control" required>
                                                 @foreach($roles as $role)
-                                                    <option value="{{$role->name}}" {{ $user->roles->contains($role->id) ? 'selected' : '' }}>{{$role->name}}</option>
+                                                    <option value="{{$role->id}}" {{ $user->roles->contains($role->id) ? 'selected' : '' }}>{{$role->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -91,11 +91,10 @@
                                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                                         </div>
                                     </div>
-
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Estado</label><br>
-                                            <input type="checkbox" {{$user->status == 1 ? 'checked' : ''}} checked data-toggle="toggle"
+                                            <input type="checkbox" name="status" {{$user->status == 1 ? 'checked' : ''}} data-toggle="toggle"
                                                    data-on="Activo" data-off="Inactivo &nbsp;" data-onstyle="success" data-offstyle="danger">
                                         </div>
                                     </div>

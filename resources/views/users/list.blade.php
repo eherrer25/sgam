@@ -3,15 +3,22 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar reporte</a>
     </div>
     <section id="main-content">
         <div class="container">
+            <div class="row">
+                <div class="col-md-12 align-self-center text-center">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-dismissible text-center" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ $message }}
+                        </div>
+                    @endif
+                </div>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">

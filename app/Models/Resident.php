@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Resident extends Model
 {
+    protected $fillable = [
+        'name','last_name','run','gender','birth_of_date', 'studies', 'profession','client_id','civil_id','room_id'
+    ];
 
 
     public function client()

@@ -26,10 +26,20 @@
         Administración
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item active">
+    <li class="nav-item {{ (request()->is('users*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{route('users-list')}}">
             <i class="fas fa-fw fa-users"></i>
             <span>Usuarios</span></a>
+    </li>
+    <li class="nav-item {{ (request()->is('clients*')) ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('clients-list')}}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Clientes</span></a>
+    </li>
+    <li class="nav-item {{ (request()->is('residents*')) ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('residents-list')}}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Residentes</span></a>
     </li>
 {{--    <li class="nav-item">--}}
 {{--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">--}}

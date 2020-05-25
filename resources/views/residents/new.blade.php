@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Crear Cliente</h1>
+        <h1 class="h3 mb-0 text-gray-800">Crear residente</h1>
     </div>
     <section id="main-content">
         <div class="container">
@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{route('client-create')}}" method="POST">
+                            <form action="{{route('resident-create')}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-4">
@@ -48,10 +48,10 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="phone">Teléfono</label>
-                                            <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"
-                                                   autocomplete="phone">
-                                            @error('phone')
+                                            <label for="gender">Genero</label>
+                                            <input id="gender" type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}"
+                                                   autocomplete="gender">
+                                            @error('gender')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -60,10 +60,10 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="mobile">Celular</label>
-                                            <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}"
-                                                   autocomplete="mobile">
-                                            @error('mobile')
+                                            <label for="birth_of_date">Fecha de nacimiento</label>
+                                            <input id="birth_of_date" type="date" class="form-control @error('birth_of_date') is-invalid @enderror" name="birth_of_date" value="{{ old('birth_of_date') }}"
+                                                   autocomplete="birth_of_date">
+                                            @error('birth_of_date')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -72,10 +72,10 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
-                                                   autocomplete="email">
-                                            @error('email')
+                                            <label for="studies">Estudios</label>
+                                            <input id="studies" type="text" class="form-control @error('studies') is-invalid @enderror" name="studies" value="{{ old('studies') }}"
+                                                   autocomplete="studies">
+                                            @error('studies')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -84,10 +84,10 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="address">Dirección</label>
-                                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}"
-                                                   autocomplete="address">
-                                            @error('address')
+                                            <label for="profession">Profesión</label>
+                                            <input id="profession" type="text" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession') }}"
+                                                   autocomplete="profession">
+                                            @error('profession')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -96,19 +96,48 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="commune">Comuna</label>
-                                            <select name="commune_id" id="communes" class="form-control" required>
-                                                @foreach($communes as $commune)
-                                                    <option value="{{$commune->id}}">{{$commune->name}}</option>
+                                            <label for="client_id">Cliente</label>
+                                            <select name="client_id" id="client_id" class="form-control" required>
+                                                @foreach($clients as $client)
+                                                    <option value="{{$client->id}}">{{$client->name}}</option>
                                                 @endforeach
                                             </select>
-                                            @error('commune')
+                                            @error('client_id')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
                                         </div>
-                                    </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="civil_id">Estado civil</label>
+                                                <select name="civil_id" id="civil_id" class="form-control" required>
+                                                    @foreach($civils as $civil)
+                                                        <option value="{{$civil->id}}">{{$civil->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('civil_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label for="room_id">Dormitorio</label>
+                                                <select name="room_id" id="room_id" class="form-control" required>
+                                                    @foreach($rooms as $room)
+                                                        <option value="{{$room->id}}">{{$room->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('room_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary float-right">Agregar</button>
                                     </div>

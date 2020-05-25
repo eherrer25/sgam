@@ -18,11 +18,14 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->string('run');
-            $table->integer('phone');
-            $table->integer('mobile');
-            $table->string('email');
+            $table->string('phone')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('email')->nullable();
             $table->string('address');
-            $table->string('commune');
+
+            $table->bigInteger('commune_id')->unsigned();
+            $table->foreign('commune_id')->references('id')->on('communes');
+
             $table->timestamps();
         });
     }

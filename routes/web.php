@@ -26,8 +26,26 @@ Route::middleware('auth')->prefix('admin')->group(function(){
         Route::get('new','UserController@newUser')->name('user-new');
         Route::post('new','UserController@createUser')->name('user-create');
         Route::get('edit/{id}','UserController@editUser')->name('user-edit');
-        Route::put('update','UserController@updateUser')->name('user-update');
+        Route::put('update/{id}','UserController@updateUser')->name('user-update');
         Route::delete('delete/{id}','UserController@deleteUser')->name('user-delete');
+    });
+
+    Route::prefix('clients')->group(function(){
+        Route::get('list','ClientController@listClients')->name('clients-list');
+        Route::get('new','ClientController@newClient')->name('client-new');
+        Route::post('new','ClientController@createClient')->name('client-create');
+        Route::get('edit/{id}','ClientController@editClient')->name('client-edit');
+        Route::put('update/{id}','ClientController@updateClient')->name('client-update');
+        Route::delete('delete/{id}','ClientController@deleteClient')->name('client-delete');
+    });
+
+    Route::prefix('residents')->group(function(){
+        Route::get('list','ResidentController@listResidents')->name('residents-list');
+        Route::get('new','ResidentController@newResident')->name('resident-new');
+        Route::post('new','ResidentController@createResident')->name('resident-create');
+        Route::get('edit/{id}','ResidentController@editResident')->name('resident-edit');
+        Route::put('update/{id}','ResidentController@updateResident')->name('resident-update');
+        Route::delete('delete/{id}','ResidentController@deleteResident')->name('resident-delete');
     });
 
 });

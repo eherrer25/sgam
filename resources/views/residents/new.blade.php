@@ -108,36 +108,37 @@
                                             </span>
                                             @enderror
                                         </div>
-                                        <div class="col-4">
-                                            <div class="form-group">
-                                                <label for="civil_id">Estado civil</label>
-                                                <select name="civil_id" id="civil_id" class="form-control" required>
-                                                    @foreach($civils as $civil)
-                                                        <option value="{{$civil->id}}">{{$civil->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('civil_id')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="civil_id">Estado civil</label>
+                                            <select name="civil_id" id="civil_id" class="form-control" required>
+                                                @foreach($civils as $civil)
+                                                    <option value="{{$civil->id}}">{{$civil->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('civil_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
-                                        <div class="col-4">
-                                            <div class="form-group">
-                                                <label for="room_id">Dormitorio</label>
-                                                <select name="room_id" id="room_id" class="form-control" required>
-                                                    @foreach($rooms as $room)
-                                                        <option value="{{$room->id}}">{{$room->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('room_id')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="room_id">Dormitorio</label>
+                                            <select name="room_id" id="room_id" class="form-control" required>
+                                                @foreach($rooms as $room)
+                                                    <option value="{{$room->id}}">{{$room->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('room_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
+                                    </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary float-right">Agregar</button>
                                     </div>

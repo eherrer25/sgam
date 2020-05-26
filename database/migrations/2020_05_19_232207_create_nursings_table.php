@@ -17,6 +17,7 @@ class CreateNursingsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->longText('description');
+            $table->string('frequency')->nullable();
             $table->timestamps();
         });
     }

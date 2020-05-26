@@ -46,6 +46,9 @@ Route::middleware('auth')->prefix('admin')->group(function(){
         Route::get('edit/{id}','ResidentController@editResident')->name('resident-edit');
         Route::put('update/{id}','ResidentController@updateResident')->name('resident-update');
         Route::delete('delete/{id}','ResidentController@deleteResident')->name('resident-delete');
+
+        Route::get('record/{id}','RecordController@recordResident')->name('resident-record');
+        Route::post('record','RecordController@saveRecord')->name('new-record');
     });
 
 });

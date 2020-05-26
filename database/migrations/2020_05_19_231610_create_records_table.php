@@ -16,7 +16,6 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('frequency');
             $table->longText('observations');
 
             $table->bigInteger('resident_id')->unsigned();

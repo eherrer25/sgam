@@ -40,11 +40,12 @@
                                         <td>{{  $resident->client->name }}</td>
                                         <td>{{  $resident->room->name }}</td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('resident-edit', $resident->id) }}">Edit</a>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('resident-edit', $resident->id) }}"><i class="fa fa-edit"></i></a>
+                                            <a class="btn btn-secondary btn-sm" href="{{ route('resident-record', $resident->id) }}">Ficha</a>
                                             <form action="{{route('resident-delete', $resident->id)}}" method="POST" style="display: inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>

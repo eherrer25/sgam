@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Nursing extends Model
 {
     protected $fillable = [
-        'name','description'
+        'name','description','frequency'
     ];
 }

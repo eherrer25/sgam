@@ -41,6 +41,11 @@
             <i class="fas fa-fw fa-user"></i>
             <span>Residentes</span></a>
     </li>
+    <li class="nav-item {{ (request()->is('nursings*')) ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('nursings-list')}}">
+            <i class="fas fa-book-medical"></i>
+            <span>Cuidados</span></a>
+    </li>
 {{--    <li class="nav-item">--}}
 {{--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">--}}
 {{--            <i class="fas fa-fw fa-cog"></i>--}}

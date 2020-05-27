@@ -63,4 +63,37 @@ class RecordController extends Controller
             abort(500);
         }
     }
+
+    public function editRecord(Request $request)
+    {
+        $messages = [
+            'name.required' => 'El nombre es requerido',
+            'observations.required' => 'Las observaciones son requeridas',
+        ];
+
+        $this->validate($request, [
+            'name' => 'required',
+            'observations' => 'required'
+        ],$messages);
+
+        try {
+
+            $record = Record::find($request->id);
+
+            if(!$record){
+                abort(404);
+            }
+
+            $record->name = $request->name;
+            $record->observations = $request->observations;
+            $record->save();
+
+            return redirect()->route('resident-record', $record->resident->id)
+                ->with('success','Ficha modificada con éxito.');
+
+        }catch (\Exception $e){
+            report($e);
+            abort(500);
+        }
+    }
 }

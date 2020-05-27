@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Residentes</h1>
+        <h1 class="h3 mb-0 text-gray-800">Cuidados</h1>
     </div>
     <section id="main-content">
         <div class="container">
@@ -21,29 +21,23 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Lista de residentes <a href="{{route('resident-new')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a></div>
+                        <div class="card-header">Lista de cuidados <a href="{{route('nursing-new')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a></div>
                         <div class="card-body">
                             <table class="table table-bordered">
                                 <tr>
                                     <th>id</th>
                                     <th>Nombre</th>
-                                    <th>Run</th>
-                                    <th>Cliente</th>
-                                    <th>Dormitorio</th>
+                                    <th>Frecuencia</th>
                                     <th width="280px">Acciones</th>
                                 </tr>
-                                @foreach ($data as $key => $resident)
+                                @foreach ($data as $key => $nursing)
                                     <tr>
-                                        <td>{{  $resident->id }}</td>
-                                        <td>{{  $resident->name.' '. $resident->last_name }}</td>
-                                        <td>{{  $resident->run }}</td>
-                                        <td>{{  $resident->client->name }}</td>
-                                        <td>{{  $resident->room->name }}</td>
+                                        <td>{{  $nursing->id }}</td>
+                                        <td>{{  $nursing->name }}</td>
+                                        <td>{{  $nursing->frequency }}</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="{{ route('resident-edit', $resident->id) }}"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-secondary btn-sm" href="{{ route('resident-record', $resident->id) }}">Ficha</a>
-{{--                                            <a class="btn btn-secondary btn-sm" href="{{ route('resident-nursings', $resident->id) }}">Cuidados</a>--}}
-                                            <form action="{{route('resident-delete', $resident->id)}}" method="POST" style="display: inline">
+                                            <a class="btn btn-primary btn-sm" href="{{ route('nursing-edit', $nursing->id) }}"><i class="fa fa-edit"></i></a>
+                                            <form action="{{route('nursing-delete', $nursing->id)}}" method="POST" style="display: inline">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>

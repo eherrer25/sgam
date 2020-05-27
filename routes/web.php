@@ -49,6 +49,16 @@ Route::middleware('auth')->prefix('admin')->group(function(){
 
         Route::get('record/{id}','RecordController@recordResident')->name('resident-record');
         Route::post('record','RecordController@saveRecord')->name('new-record');
+        Route::post('update-record','RecordController@editRecord')->name('edit-record');
+    });
+
+    Route::prefix('nursings')->group(function(){
+        Route::get('list','NursingController@listNursings')->name('nursings-list');
+        Route::get('new','NursingController@newNursing')->name('nursing-new');
+        Route::post('new','NursingController@createNursing')->name('nursing-create');
+        Route::get('edit/{id}','NursingController@editNursing')->name('nursing-edit');
+        Route::put('update/{id}','NursingController@updateNursing')->name('nursing-update');
+        Route::delete('delete/{id}','NursingController@deleteNursing')->name('nursing-delete');
     });
 
 });

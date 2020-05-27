@@ -22,8 +22,13 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">Ficha de {{$resident->name}} {{$resident->last_name}}
+                            @if(!$record)
                             <button class="btn btn-sm btn-primary shadow-sm float-right"
                                data-toggle="modal" data-target="#recordModal"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</button>
+                            @else
+                                <button class="btn btn-sm btn-primary shadow-sm float-right"
+                                        data-toggle="modal" data-target="#editModal"><i class="fas fa-edit fa-sm text-white-50"></i> Editar</button>
+                            @endif
                         </div>
                         <div class="card-body">
                             @if($record)
@@ -53,6 +58,7 @@
                 <form action="{{route('new-record')}}" method="POST">
                     <div class="modal-body">
                             @csrf
+                        <input type="hidden" value="{{$resident->id}}" name="resident_id">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -88,6 +94,56 @@
             </div>
         </div>
     </div>
+    @if($record)
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear ficha</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{route('edit-record')}}" method="POST">
+                    <div class="modal-body">
+                        @csrf
+                        <input type="hidden" value="{{$record->id}}" name="id">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="name">Nombre</label>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $record->name }}" required autofocus>
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="observations">Observaciones</label>
+                                    <textarea id="observations" class="form-control @error('observations') is-invalid @enderror" name="observations" required>{!! $record->observations !!}</textarea>
+                                    @error('observations')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endif
 @endsection
 
 @section('script')

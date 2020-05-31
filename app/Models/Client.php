@@ -11,6 +11,10 @@ class Client extends Model
         'name','last_name','run','phone','mobile', 'email', 'address','commune_id'
     ];
 
+    public function getFullNameAttribute() {
+        return ucfirst($this->name) . ' ' . ucfirst($this->last_name);
+    }
+
     public function commune()
     {
         return $this->belongsTo(Commune::class);

@@ -10,6 +10,10 @@ class Resident extends Model
         'name','last_name','run','gender','birth_of_date', 'studies', 'profession','client_id','civil_id','room_id'
     ];
 
+    public function getFullNameAttribute() {
+        return ucfirst($this->name) . ' ' . ucfirst($this->last_name);
+    }
+
 
     public function client()
     {

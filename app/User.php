@@ -15,6 +15,10 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
+    public function getFullNameAttribute() {
+        return ucfirst($this->name) . ' ' . ucfirst($this->last_name);
+    }
+
     public function office()
     {
         return $this->belongsTo(Office::class);

@@ -38,7 +38,7 @@
                                 @foreach ($data as $key => $resident)
                                     <tr>
                                         <td>{{  $resident->id }}</td>
-                                        <td>{{  $resident->name.' '. $resident->last_name }}</td>
+                                        <td>{{  $resident->full_name }}</td>
                                         <td>{{  $resident->run }}</td>
                                         <td>{{  $resident->client->name }}</td>
                                         <td>{{  $resident->room->name }}</td>

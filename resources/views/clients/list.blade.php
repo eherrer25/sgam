@@ -40,7 +40,7 @@
                                 @foreach ($data as $key => $client)
                                     <tr>
                                         <td>{{ $client->id }}</td>
-                                        <td>{{ $client->name.' '.$client->last_name }}</td>
+                                        <td>{{ $client->full_name }}</td>
                                         <td>{{ $client->run }}</td>
                                         <td>{{ $client->phone }}</td>
                                         <td>{{ $client->mobile }}</td>

@@ -16,6 +16,11 @@
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
         <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+        <style>
+            textarea {
+                resize: none;
+            }
+        </style>
         @yield('css')
 
 
@@ -163,6 +168,7 @@
         <script>
             $(document).ready(function() {
                 $('.select2').select2();
+
                 $('.dataTable').DataTable({
                     language: {
                         "decimal": "",
@@ -189,6 +195,18 @@
                         "orderable": false
                     } ]
                 });
+
+                $('.summernote').summernote({
+                    toolbar: [
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font', ['strikethrough', 'superscript', 'subscript']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                    ],
+                    disableResizeEditor: true,
+                    height: 200,
+                });
+
             });
         </script>
 

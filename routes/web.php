@@ -22,10 +22,12 @@ Route::middleware('auth')->prefix('admin')->group(function(){
     Route::get('home','HomeController@index')->name('home');
 
     //Listar cuidados de residentes
-    Route::get('show-nursings','ResidentNursingController@showNursings')->name('show-nursings');
+    Route::get('list-nursings','ResidentNursingController@showNursings')->name('show-nursings');
+    Route::get('new-nursings','ResidentNursingController@newNursings')->name('new-nursings');
+    Route::post('save-nursings','ResidentNursingController@saveNursings')->name('save-nursings');
+    Route::post('change-status','ResidentNursingController@changeStatus')->name('nursing-resident-change');
+    Route::delete('delete/{id}','ResidentNursingController@deleteNursing')->name('nursing-resident-delete');
 
-//    Route::get('show-nursings','HomeController@showNursings')->name('show-nursings');
-//    Route::post('save-nursings','HomeController@saveNursings')->name('save-nursings');
 
     Route::middleware('role:admin')->prefix('users')->group(function(){
         Route::get('list','UserController@listUsers')->name('users-list');

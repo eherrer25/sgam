@@ -23,15 +23,18 @@
                     <div class="card">
                         <div class="card-header">Lista de residentes <a href="{{route('resident-new')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a></div>
                         <div class="card-body">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>id</th>
-                                    <th>Nombre</th>
-                                    <th>Run</th>
-                                    <th>Cliente</th>
-                                    <th>Dormitorio</th>
-                                    <th width="280px">Acciones</th>
-                                </tr>
+                            <table class="table table-bordered dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Nombre</th>
+                                        <th>Run</th>
+                                        <th>Cliente</th>
+                                        <th>Dormitorio</th>
+                                        <th width="280px" class="nosort">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 @foreach ($data as $key => $resident)
                                     <tr>
                                         <td>{{  $resident->id }}</td>
@@ -42,7 +45,7 @@
                                         <td>
                                             <a class="btn btn-primary btn-sm" href="{{ route('resident-edit', $resident->id) }}"><i class="fa fa-edit"></i></a>
                                             <a class="btn btn-secondary btn-sm" href="{{ route('resident-record', $resident->id) }}">Ficha</a>
-{{--                                            <a class="btn btn-secondary btn-sm" href="{{ route('resident-nursings', $resident->id) }}">Cuidados</a>--}}
+                                            {{--                                            <a class="btn btn-secondary btn-sm" href="{{ route('resident-nursings', $resident->id) }}">Cuidados</a>--}}
                                             <form action="{{route('resident-delete', $resident->id)}}" method="POST" style="display: inline">
                                                 @method('delete')
                                                 @csrf
@@ -51,8 +54,8 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>

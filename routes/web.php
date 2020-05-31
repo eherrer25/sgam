@@ -21,7 +21,13 @@ Route::middleware('auth')->prefix('admin')->group(function(){
 
     Route::get('home','HomeController@index')->name('home');
 
-    Route::prefix('users')->group(function(){
+    //Listar cuidados de residentes
+    Route::get('show-nursings','ResidentNursingController@showNursings')->name('show-nursings');
+
+//    Route::get('show-nursings','HomeController@showNursings')->name('show-nursings');
+//    Route::post('save-nursings','HomeController@saveNursings')->name('save-nursings');
+
+    Route::middleware('role:admin')->prefix('users')->group(function(){
         Route::get('list','UserController@listUsers')->name('users-list');
         Route::get('new','UserController@newUser')->name('user-new');
         Route::post('new','UserController@createUser')->name('user-create');
@@ -60,6 +66,7 @@ Route::middleware('auth')->prefix('admin')->group(function(){
         Route::put('update/{id}','NursingController@updateNursing')->name('nursing-update');
         Route::delete('delete/{id}','NursingController@deleteNursing')->name('nursing-delete');
     });
+
 
 });
 

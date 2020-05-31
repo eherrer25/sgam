@@ -23,13 +23,16 @@
                     <div class="card">
                         <div class="card-header">Lista de cuidados <a href="{{route('nursing-new')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a></div>
                         <div class="card-body">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>id</th>
-                                    <th>Nombre</th>
-                                    <th>Frecuencia</th>
-                                    <th width="280px">Acciones</th>
-                                </tr>
+                            <table class="table table-bordered dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Nombre</th>
+                                        <th>Frecuencia</th>
+                                        <th width="280px" class="nosort">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 @foreach ($data as $key => $nursing)
                                     <tr>
                                         <td>{{  $nursing->id }}</td>
@@ -45,6 +48,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                </tbody>
                             </table>
 
                         </div>

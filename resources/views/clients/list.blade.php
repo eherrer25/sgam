@@ -23,17 +23,20 @@
                     <div class="card">
                         <div class="card-header">Lista de clientes <a href="{{route('client-new')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a></div>
                         <div class="card-body">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>id</th>
-                                    <th>Nombre</th>
-                                    <th>run</th>
-                                    <th>Teléfono</th>
-                                    <th>Celular</th>
-                                    <th>Email</th>
-                                    <th>Comuna</th>
-                                    <th width="280px">Acciones</th>
-                                </tr>
+                            <table class="table table-bordered dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Nombre</th>
+                                        <th>run</th>
+                                        <th>Teléfono</th>
+                                        <th>Celular</th>
+                                        <th>Email</th>
+                                        <th>Comuna</th>
+                                        <th width="280px" class="nosort">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 @foreach ($data as $key => $client)
                                     <tr>
                                         <td>{{ $client->id }}</td>
@@ -53,8 +56,8 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>

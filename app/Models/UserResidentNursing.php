@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserResidentNursing extends Model
 {
+    protected $fillable = [
+        'user_id','resident_id','nursing_id','start_unreal','stop_unreal', 'start', 'stop','status'
+    ];
+
+    protected $table = 'users_residents_nursings';
 
     public function user()
     {

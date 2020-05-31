@@ -9,14 +9,23 @@
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Menu
+    </div>
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item {{ (request()->is('home')) ? 'active' : '' }}">
         <a class="nav-link" href="{{route('home')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
+    <li class="nav-item {{ (request()->is('show-nursings')) ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('show-nursings') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Listar cuidados</span></a>
+    </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -26,11 +35,13 @@
         Administración
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
+    @role('admin')
     <li class="nav-item {{ (request()->is('users*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{route('users-list')}}">
             <i class="fas fa-fw fa-users"></i>
             <span>Usuarios</span></a>
     </li>
+    @endrole
     <li class="nav-item {{ (request()->is('clients*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{route('clients-list')}}">
             <i class="fas fa-fw fa-user"></i>

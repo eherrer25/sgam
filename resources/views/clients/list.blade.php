@@ -21,7 +21,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Lista de clientes <a href="{{route('client-new')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a></div>
+                        <div class="card-header">Lista de clientes
+                            @role('admin')
+                            <a href="{{route('client-new')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a>
+                            @endrole
+                        </div>
                         <div class="card-body">
                             <table class="table table-bordered dataTable">
                                 <thead>
@@ -47,11 +51,11 @@
                                         <td>{{ $client->email }}</td>
                                         <td>{{ $client->commune->name }}</td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('client-edit',$client->id) }}">Edit</a>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('client-edit',$client->id) }}"><i class="fa fa-edit"></i> Editar</a>
                                             <form action="{{route('client-delete',$client->id)}}" method="POST" style="display: inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>

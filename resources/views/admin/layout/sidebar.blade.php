@@ -29,11 +29,12 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
+    @hasanyrole('admin|tens')
     <!-- Heading -->
     <div class="sidebar-heading">
         Administración
     </div>
+    @endhasanyrole
     <!-- Nav Item - Pages Collapse Menu -->
     @role('admin')
     <li class="nav-item {{ (request()->is('users*')) ? 'active' : '' }}">
@@ -42,6 +43,7 @@
             <span>Usuarios</span></a>
     </li>
     @endrole
+    @hasanyrole('admin|tens')
     <li class="nav-item {{ (request()->is('clients*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{route('clients-list')}}">
             <i class="fas fa-fw fa-user"></i>
@@ -57,24 +59,9 @@
             <i class="fas fa-book-medical"></i>
             <span>Cuidados</span></a>
     </li>
-{{--    <li class="nav-item">--}}
-{{--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">--}}
-{{--            <i class="fas fa-fw fa-cog"></i>--}}
-{{--            <span>Components</span>--}}
-{{--        </a>--}}
-{{--        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">--}}
-{{--            <div class="bg-white py-2 collapse-inner rounded">--}}
-{{--                <h6 class="collapse-header">Custom Components:</h6>--}}
-{{--                <a class="collapse-item" href="buttons.html">Buttons</a>--}}
-{{--                <a class="collapse-item" href="cards.html">Cards</a>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </li>--}}
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-
+    @endhasanyrole
+    <!-- Divider -->
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

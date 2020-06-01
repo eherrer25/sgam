@@ -39,11 +39,11 @@
                                         <td>{{  $nursing->name }}</td>
                                         <td>{{  $nursing->frequency }}</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="{{ route('nursing-edit', $nursing->id) }}"><i class="fa fa-edit"></i></a>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('nursing-edit', $nursing->id) }}"><i class="fa fa-edit"></i> Editar</a>
                                             <form action="{{route('nursing-delete', $nursing->id)}}" method="POST" style="display: inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>

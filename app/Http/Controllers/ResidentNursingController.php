@@ -8,6 +8,7 @@ use App\Models\UserResidentNursing;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResidentNursingController extends Controller
 {
@@ -16,7 +17,13 @@ class ResidentNursingController extends Controller
     {
         try {
 
-            $nursings = UserResidentNursing::orderBy('created_at')->get();
+            $nursings = UserResidentNursing::orderBy('created_at');
+
+            if(Auth::user()->hasRole('cam')){
+                $nursings = $nursings->where('user_id',Auth::user()->id);
+            }
+
+            $nursings = $nursings->get();
 
             return view('residentnursings.list',compact('nursings'));
 

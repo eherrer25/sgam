@@ -21,7 +21,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Lista de residentes <a href="{{route('resident-new')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a></div>
+                        <div class="card-header">Lista de residentes
+                            @role('admin')
+                            <a href="{{route('resident-new')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a>
+                            @endrole
+                        </div>
                         <div class="card-body">
                             <table class="table table-bordered dataTable">
                                 <thead>
@@ -31,6 +35,7 @@
                                         <th>Run</th>
                                         <th>Cliente</th>
                                         <th>Dormitorio</th>
+                                        <th>Ficha</th>
                                         <th width="280px" class="nosort">Acciones</th>
                                     </tr>
                                 </thead>
@@ -42,14 +47,15 @@
                                         <td>{{  $resident->run }}</td>
                                         <td>{{  $resident->client->name }}</td>
                                         <td>{{  $resident->room->name }}</td>
+                                        <td><a class="btn btn-primary btn-sm" href="{{ route('resident-record', $resident->id) }}"> Ver Ficha</a></td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="{{ route('resident-edit', $resident->id) }}"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-secondary btn-sm" href="{{ route('resident-record', $resident->id) }}">Ficha</a>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('resident-edit', $resident->id) }}"><i class="fa fa-edit"></i> Editar</a>
+
                                             {{--                                            <a class="btn btn-secondary btn-sm" href="{{ route('resident-nursings', $resident->id) }}">Cuidados</a>--}}
                                             <form action="{{route('resident-delete', $resident->id)}}" method="POST" style="display: inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>

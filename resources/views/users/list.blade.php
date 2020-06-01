@@ -3,7 +3,7 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar reporte</a>
+{{--        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar reporte</a>--}}
     </div>
     <section id="main-content">
         <div class="container">
@@ -24,16 +24,19 @@
                     <div class="card">
                         <div class="card-header">Lista de usuarios <a href="{{route('user-new')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a></div>
                         <div class="card-body">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>id</th>
-                                    <th>Nombre</th>
-                                    <th>Email</th>
-                                    <th>Sucursal</th>
-                                    <th>Rol</th>
-                                    <th>Estado</th>
-                                    <th width="280px">Acciones</th>
-                                </tr>
+                            <table class="table table-bordered dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Sucursal</th>
+                                        <th>Rol</th>
+                                        <th>Estado</th>
+                                        <th width="280px">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 @foreach ($data as $key => $user)
                                     <tr>
                                         <td>{{ $user->id }}</td>
@@ -51,15 +54,16 @@
                                             <label class="badge {{ $user->status == 1 ? 'badge-success' : 'badge-danger' }}">{{ $user->status == 1 ? 'Activo' : 'Inactivo' }}</label>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('user-edit',$user->id) }}">Edit</a>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('user-edit',$user->id) }}"><i class="fa fa-edit"></i> Editar</a>
                                             <form action="{{route('user-delete',$user->id)}}" method="POST" style="display: inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" {{$user->id == 1 ? 'disabled' : ''}} class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                <button type="submit" {{$user->id == 1 ? 'disabled' : ''}} class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
+                                </tbody>
                             </table>
 
                             {!! $data->render() !!}

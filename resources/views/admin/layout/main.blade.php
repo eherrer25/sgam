@@ -167,6 +167,9 @@
 
         <script>
             $(document).ready(function() {
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
                 $('.select2').select2();
 
                 $('.dataTable').DataTable({

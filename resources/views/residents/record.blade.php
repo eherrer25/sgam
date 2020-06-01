@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Ficha</h1>
+        <h1 class="h3 mb-0 text-gray-800">Ficha de cuidados</h1>
     </div>
     <section id="main-content">
         <div class="container">
@@ -21,7 +21,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Ficha de {{$resident->name}} {{$resident->last_name}}
+                        <div class="card-header">Ficha de <b>{{$resident->full_name}}</b>
                             @if(!$record)
                             <button class="btn btn-sm btn-primary shadow-sm float-right"
                                data-toggle="modal" data-target="#recordModal"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</button>
@@ -36,6 +36,9 @@
                                 <div class="card-body">
                                     <label>{{$record->name}}</label>
                                     <pre>{!! $record->observations !!}</pre>
+                                </div>
+                                <div class="card-footer">
+                                    <p class="float-right">Última actualización: {{Carbon\Carbon::parse($record->updated_at)->format('d/m/Y')}}</p>
                                 </div>
                             </div>
                             @endif

@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">Lista de cuidados de residentes
-                            <a href="{{route('new-nursings')}}" class="btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-plus fa-sm text-white-50"></i> Agregar</a>
+                            <a href="{{route('new-nursings')}}" class="btn btn-sm btn-primary shadow-sm float-right">Asignar cuidado</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered dataTable">
@@ -41,7 +41,11 @@
                                 @foreach ($nursings as $nursing)
                                     <tr>
                                         <td>{{  $nursing->user->full_name }}</td>
-                                        <td>{{  $nursing->resident->full_name }} <a href="#" class="btn btn-primary btn-sm float-right" id="show-record" data-record="{{$nursing->resident->record}}" data-toggle="modal" data-target="#recordModal">Ficha</a></td>
+                                        <td>{{  $nursing->resident->full_name }}
+                                            <a href="#" class="btn btn-primary btn-sm float-right" id="show-record"
+                                               data-record="{{$nursing->resident->record}}" data-name="{{ $nursing->resident->full_name }}"
+                                               data-room="{{ $nursing->resident->room->name }}" data-toggle="modal" data-target="#recordModal">Ficha</a>
+                                        </td>
                                         <td>{{  $nursing->nursing->name }}</td>
 
                                         <td>{{  $nursing->start  }} - {{  $nursing->stop }}</td>
@@ -63,21 +67,18 @@
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $nursing->id }}">
                                                 <input type="hidden" name="status" value="{{ $nursing->status }}">
-                                                <button type="submit" class="btn
-                                                    @if($nursing->status == 'pendiente')
-                                                    btn-secondary
-                                                    @elseif($nursing->status == 'en proceso')
-                                                    btn-warning
-                                                    @else
-                                                    btn-success
-                                                    @endif
-                                                 btn-sm"><i class="fa fa-check-circle"></i></button>
+                                                @if($nursing->status == 'pendiente')
+                                                    <button type="submit"  data-toggle="tooltip" data-placement="top" title="Iniciar" class="btn btn-secondary btn-sm"><i class="fa fa-play-circle"></i></button>
+                                                @elseif($nursing->status == 'en proceso')
+                                                    <button type="submit"  data-toggle="tooltip" data-placement="top" title="Finalizar" class="btn btn-warning btn-sm"><i class="fa fa-check-circle"></i></button>
+                                                @endif
+
                                             </form>
                                             @hasanyrole('admin|tens')
                                             <form action="{{route('nursing-resident-delete', $nursing->id)}}" method="POST" style="display: inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</button>
                                             </form>
                                             @endhasanyrole
                                             @endif
@@ -98,7 +99,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ver ficha</h5>
+                    <h5 class="modal-title" id="titleModal"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -106,7 +107,6 @@
                 <div class="modal-body">
                     <div class="card mb-4 py-3 border-left-primary">
                         <div class="card-body">
-                            <label id="record-name"></label>
                             <pre id="record-observations"></pre>
                         </div>
                     </div>
@@ -123,7 +123,9 @@
     <script>
         $(document).on("click", "#show-record", function () {
             var record = $(this).data('record');
-            $("#record-name").text( record.name );
+            var fullname = $(this).data('name');
+            var room = $(this).data('room');
+            $("#titleModal").text( fullname+' - Habitación: '+room );
             $("#record-observations").html( record.observations );
         });
     </script>

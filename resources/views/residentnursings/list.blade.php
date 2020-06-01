@@ -31,21 +31,21 @@
                                     <th>Usuario</th>
                                     <th>Residente</th>
                                     <th>Cuidado</th>
-                                    <th>Inicio</th>
-                                    <th>Fin</th>
+                                    <th>Horario Estim.</th>
+                                    <th>Horario Real</th>
                                     <th>Estado</th>
-                                    <th width="280px" class="nosort">Acciones</th>
+                                    <th class="nosort">Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($nursings as $nursing)
                                     <tr>
                                         <td>{{  $nursing->user->full_name }}</td>
-                                        <td>{{  $nursing->resident->full_name }} <a href="#" id="show-record" data-record="{{$nursing->resident->record}}" data-toggle="modal" data-target="#recordModal"><i class="fa fa-eye"></i></a></td>
+                                        <td>{{  $nursing->resident->full_name }} <a href="#" class="btn btn-primary btn-sm float-right" id="show-record" data-record="{{$nursing->resident->record}}" data-toggle="modal" data-target="#recordModal">Ficha</a></td>
                                         <td>{{  $nursing->nursing->name }}</td>
 
-                                        <td>{{  date($nursing->start)  }}</td>
-                                        <td>{{  $nursing->stop }}</td>
+                                        <td>{{  $nursing->start  }} - {{  $nursing->stop }}</td>
+                                        <td>{{  $nursing->start_unreal  }} - {{  $nursing->stop_unreal }}</td>
                                         <td><span class="badge
                                                 @if($nursing->status == 'pendiente')
                                                 badge-secondary

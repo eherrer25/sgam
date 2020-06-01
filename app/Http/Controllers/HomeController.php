@@ -27,6 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        try {
+            $residents = Resident::get()->count();
+            $nursings = UserResidentNursing::get();
+        }catch (\Exception $e){
+            report($e);
+            abort(500);
+        }
+
+        return view('home', compact('residents','nursings'));
     }
 }

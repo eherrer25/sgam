@@ -22,7 +22,7 @@
     </li>
     <li class="nav-item {{ (request()->is('show-nursings')) ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('show-nursings') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fa-fw fa-clipboard-list"></i>
             <span>Listar cuidados</span></a>
     </li>
 

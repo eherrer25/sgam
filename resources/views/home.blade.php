@@ -84,6 +84,7 @@
                                         $proceso = $nursings->where('status','en proceso')->count();
                                         $realizados = $nursings->where('status','realizado')->count();
                                     @endphp
+                                    @if($total > 0)
                                     <h4 class="small font-weight-bold">Pendientes <span class="float-right">{{ round(($pendientes * 100) / $total) }}%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ round(($pendientes * 100) / $total) }}%" aria-valuenow="{{ round(($pendientes * 100) / $total) }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -92,10 +93,11 @@
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-warning" role="progressbar" style="width: {{ round(($proceso * 100) / $total) }}%" aria-valuenow="{{ round(($proceso * 100) / $total) }}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Realizados <span class="float-right">{{ round(($realizados * 100) / $total) }}</span></h4>
+                                    <h4 class="small font-weight-bold">Realizados <span class="float-right">{{ round(($realizados * 100) / $total) }}%</span></h4>
                                     <div class="progress">
                                         <div class="progress-bar bg-success" role="progressbar" style="width: {{ round(($realizados * 100) / $total) }}%" aria-valuenow="{{ round(($realizados * 100) / $total) }}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

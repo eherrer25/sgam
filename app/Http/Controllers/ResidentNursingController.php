@@ -86,10 +86,10 @@ class ResidentNursingController extends Controller
 
             $data->status = $status;
             if($request->status == 'pendiente') {
-                $data->start_unreal = Carbon::now()->format('h:i');
+                $data->start_unreal = Carbon::now()->format('H:i');
             }
             if($request->status == 'en proceso') {
-                $data->stop_unreal = Carbon::now()->format('h:i');
+                $data->stop_unreal = Carbon::now()->format('H:i');
             }
             $data->save();
 

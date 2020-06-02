@@ -4,6 +4,8 @@
 /public/css/app.css
 /public/js/app.js
 /public/js/validar.js
+/public/css/login.css
+/public/mix-manifest.json
 /storage/*.key
 /vendor
 .env

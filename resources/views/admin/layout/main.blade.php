@@ -165,6 +165,9 @@
         <!-- Page level plugins -->
         <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
 
+        <script src="{{asset(mix('js/validar.js'))}}"></script>
+
+
         <script>
             $(document).ready(function() {
                 $(function () {
@@ -210,10 +213,12 @@
                     height: 200,
                 });
 
+                @yield('script')
+
             });
         </script>
 
-        @yield('script')
+
 
 
     </body>

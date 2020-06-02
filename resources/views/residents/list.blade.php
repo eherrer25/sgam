@@ -33,7 +33,7 @@
                                         <th>id</th>
                                         <th>Nombre</th>
                                         <th>Run</th>
-                                        <th>Cliente</th>
+                                        <th>Apoderado</th>
                                         <th>Dormitorio</th>
                                         <th>Ficha</th>
                                         <th width="280px" class="nosort">Acciones</th>

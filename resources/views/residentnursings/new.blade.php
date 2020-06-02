@@ -70,7 +70,7 @@
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <label for="start">Inicio</label>
-                                                <input type="time" name="start" id="start" class="form-control">
+                                                <input type="time" name="start" id="start" class="form-control" required>
                                                 @error('start')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                                 @enderror
@@ -79,7 +79,7 @@
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <label for="stop">Termino</label>
-                                                <input type="time" name="stop" id="stop" class="form-control">
+                                                <input type="time" name="stop" id="stop" class="form-control" required>
                                                 @error('stop')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                                 @enderror

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Residente</h1>
+        <h1 class="h3 mb-0 text-gray-800">Editar residente</h1>
     </div>
     <section id="main-content">
         <div class="container">
@@ -12,7 +12,6 @@
                 </div>
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Editar residente</div>
                         <div class="card-body">
                             <form action="{{route('resident-update', $resident->id)}}" method="POST">
                                 {{ csrf_field() }}
@@ -56,7 +55,11 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="gender">Genero</label>
-                                            <input id="gender" type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{  $resident->gender }}">
+                                            <select name="gender" id="gender" class="form-control" required>
+                                                <option value="Masculino" {{  $resident->gender == 'Masculino' ? 'selected' : '' }}>Masculino</option>
+                                                <option value="Femenino" {{  $resident->gender == 'Femenino' ? 'selected' : '' }}>Femenino</option>
+                                                <option value="Otro" {{  $resident->gender == 'Otro' ? 'selected' : '' }}>Otro</option>
+                                            </select>
                                             @error('gender')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -102,7 +105,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="client_id">Cliente</label>
+                                            <label for="client_id">Apoderado</label>
                                             <select name="client_id" id="client_id" class="form-control" required>
                                                 @foreach($clients as $client)
                                                     <option value="{{$client->id}}" {{ $resident->client_id == $client->id ? 'selected' : ''}}>{{$client->name}}</option>

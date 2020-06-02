@@ -52,6 +52,7 @@ class ResidentNursingController extends Controller
     public function saveNursings(Request $request)
     {
         try {
+
             //estados = pendiente,en proceso, realizado
 
             $new = new UserResidentNursing();

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Clientes</h1>
+        <h1 class="h3 mb-0 text-gray-800">Editar apoderado</h1>
     </div>
     <section id="main-content">
         <div class="container">
@@ -12,7 +12,6 @@
                 </div>
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Editar cliente</div>
                         <div class="card-body">
                             <form action="{{route('client-update', $client->id)}}" method="POST">
                                 {{ csrf_field() }}

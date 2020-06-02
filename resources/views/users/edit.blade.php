@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
+        <h1 class="h3 mb-0 text-gray-800">Editar usuario</h1>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
@@ -14,7 +14,6 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Editar usuario</div>
                         <div class="card-body">
                             <form action="{{route('user-update',$user->id)}}" method="POST">
                                 {{ csrf_field() }}

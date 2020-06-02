@@ -49,8 +49,11 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="gender">Genero</label>
-                                            <input id="gender" type="text" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}"
-                                                   autocomplete="gender">
+                                            <select name="gender" id="gender" class="form-control" required>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="Otro">Otro</option
+                                            </select>
                                             @error('gender')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -96,7 +99,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="client_id">Cliente</label>
+                                            <label for="client_id">Apoderado</label>
                                             <select name="client_id" id="client_id" class="form-control" required>
                                                 @foreach($clients as $client)
                                                     <option value="{{$client->id}}">{{$client->name}}</option>

@@ -13,14 +13,13 @@
     <div class="sidebar-heading">
         Menu
     </div>
-
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item {{ (request()->is('home')) ? 'active' : '' }}">
+    <li class="nav-item {{ (request()->is('admin/home')) ? 'active' : '' }}">
         <a class="nav-link" href="{{route('home')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-    <li class="nav-item {{ (request()->is('show-nursings')) ? 'active' : '' }}">
+    <li class="nav-item {{ (request()->is('admin/list-nursings')) ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('show-nursings') }}">
             <i class="fas fa-fw fa-clipboard-list"></i>
             <span>Listar cuidados</span></a>
@@ -37,24 +36,24 @@
     @endhasanyrole
     <!-- Nav Item - Pages Collapse Menu -->
     @role('admin')
-    <li class="nav-item {{ (request()->is('users*')) ? 'active' : '' }}">
+    <li class="nav-item {{ (request()->is('admin/users*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{route('users-list')}}">
             <i class="fas fa-fw fa-users"></i>
             <span>Usuarios</span></a>
     </li>
     @endrole
     @hasanyrole('admin|tens')
-    <li class="nav-item {{ (request()->is('clients*')) ? 'active' : '' }}">
+    <li class="nav-item {{ (request()->is('admin/clients*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{route('clients-list')}}">
             <i class="fas fa-fw fa-user"></i>
-            <span>Clientes</span></a>
+            <span>Apoderados</span></a>
     </li>
-    <li class="nav-item {{ (request()->is('residents*')) ? 'active' : '' }}">
+    <li class="nav-item {{ (request()->is('admin/residents*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{route('residents-list')}}">
             <i class="fas fa-fw fa-user"></i>
             <span>Residentes</span></a>
     </li>
-    <li class="nav-item {{ (request()->is('nursings*')) ? 'active' : '' }}">
+    <li class="nav-item {{ (request()->is('admin/nursings*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{route('nursings-list')}}">
             <i class="fas fa-book-medical"></i>
             <span>Cuidados</span></a>

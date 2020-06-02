@@ -77,7 +77,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="observations">Observaciones</label>
-                                        <textarea id="observations" class="form-control @error('observations') is-invalid @enderror" name="observations" value="{{ old('observations') }}" required></textarea>
+                                        <textarea id="observations" class="form-control summernote @error('observations') is-invalid @enderror" name="observations" value="{{ old('observations') }}" required></textarea>
                                         @error('observations')
                                         <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -150,9 +150,7 @@
 @endsection
 
 @section('script')
-    <script>
         $('#recordModal').on('shown.bs.modal', function () {
             $('#recordModal').trigger('focus')
-        })
-    </script>
+        });
 @endsection

@@ -38,7 +38,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="run">Run</label>
-                                            <input id="run" type="text" class="form-control @error('run') is-invalid @enderror" name="run" value="{{ old('run') }}" required autocomplete="run">
+                                            <input id="run" type="text" class="form-control @error('run') is-invalid @enderror" name="run" value="{{ old('run') }}" required autocomplete="run" placeholder="Ej:15330467-k">
                                             @error('run')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
                                         <div class="form-group">
                                             <label for="phone">Teléfono</label>
                                             <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"
-                                                   autocomplete="phone">
+                                                   autocomplete="phone" placeholder="Ej:223339579">
                                             @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -62,7 +62,7 @@
                                         <div class="form-group">
                                             <label for="mobile">Celular</label>
                                             <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}"
-                                                   autocomplete="mobile">
+                                                   autocomplete="mobile" placeholder="Ej:+56975382446">
                                             @error('mobile')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

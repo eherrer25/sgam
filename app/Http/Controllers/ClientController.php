@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Commune;
 use Illuminate\Http\Request;
 
+
 class ClientController extends Controller
 {
 
@@ -41,12 +42,14 @@ class ClientController extends Controller
 
     public function createClient(Request $request)
     {
+
         $messages = [
             'name.required' => 'El nombre es requerido',
             'last_name.required' => 'El apellido es requerido',
             'run.required' => 'El run es requerido',
-            'phone.max' => 'El teléfono debe tener 10 digitos',
-            'mobile.max' => 'El celular debe tener 10 digitos',
+            'run.cl_rut' => 'Rut no valido Ej:15330467-k',
+            'phone.regex' => 'Formato no valido Ej:223339579',
+            'mobile.regex' => 'Formato no valido Ej:+56975376558',
             'email.email' => 'El email es invalido',
             'address.required' => 'La dirección es requerida',
             'commune_id.required' => 'La comuna es requerida',
@@ -55,9 +58,9 @@ class ClientController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'last_name' => 'required',
-            'run' => 'required',
-            'phone' => 'max:10|nullable',
-            'mobile' => 'max:10|nullable',
+            'run' => 'required|cl_rut',
+            'phone' => 'nullable|regex:/^\+?[0-9]{3}-?[0-9]{6,7}$/',
+            'mobile' => 'nullable|regex:/^\+?[0-9]{3}-?[0-9]{6,8}$/',
             'email' => 'email|nullable',
             'address' => 'required',
             'commune_id' => 'required',
@@ -96,25 +99,26 @@ class ClientController extends Controller
     public function updateClient(Request $request, $id)
     {
         $messages = [
-            'name.required' => 'El nombre es requerido',
-            'last_name.required' => 'El apellido es requerido',
-            'run.required' => 'El run es requerido',
-            'phone.max' => 'El teléfono debe tener 10 digitos',
-            'mobile.max' => 'El celular debe tener 10 digitos',
-            'email.email' => 'El email es invalido',
-            'address.required' => 'La dirección es requerida',
-            'commune_id.required' => 'La comuna es requerida',
+          'name.required' => 'El nombre es requerido',
+          'last_name.required' => 'El apellido es requerido',
+          'run.required' => 'El run es requerido',
+          'run.cl_rut' => 'Rut no valido Ej:15330467-k',
+          'phone.regex' => 'Formato no valido Ej:223339579',
+          'mobile.regex' => 'Formato no valido Ej:+56975376558',
+          'email.email' => 'El email es invalido',
+          'address.required' => 'La dirección es requerida',
+          'commune_id.required' => 'La comuna es requerida',
         ];
 
         $this->validate($request, [
-            'name' => 'required',
-            'last_name' => 'required',
-            'run' => 'required',
-            'phone' => 'max:10|nullable',
-            'mobile' => 'max:10|nullable',
-            'email' => 'email|nullable',
-            'address' => 'required',
-            'commune_id' => 'required',
+          'name' => 'required',
+          'last_name' => 'required',
+          'run' => 'required|cl_rut',
+          'phone' => 'nullable|regex:/^\+?[0-9]{3}-?[0-9]{6,7}$/',
+          'mobile' => 'nullable|regex:/^\+?[0-9]{3}-?[0-9]{6,8}$/',
+          'email' => 'email|nullable',
+          'address' => 'required',
+          'commune_id' => 'required',
         ],$messages);
 
         try{

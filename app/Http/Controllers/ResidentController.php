@@ -47,6 +47,7 @@ class ResidentController extends Controller
             'name.required' => 'El nombre es requerido',
             'last_name.required' => 'El apellido es requerido',
             'run.required' => 'El run es requerido',
+            'run.cl_rut' => 'Rut no valido Ej:15330467-k',
             'gender.required' => 'El genero es requerido',
             'birth_of_date.required' => 'La fecha de nacimiento es requerido',
             'client_id.required' => 'El cliente es requerido',
@@ -57,7 +58,7 @@ class ResidentController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'last_name' => 'required',
-            'run' => 'required',
+            'run' => 'required|cl_rut',
             'phone' => 'max:10|nullable',
             'mobile' => 'max:10|nullable',
             'studies' => 'nullable',
@@ -104,6 +105,7 @@ class ResidentController extends Controller
             'name.required' => 'El nombre es requerido',
             'last_name.required' => 'El apellido es requerido',
             'run.required' => 'El run es requerido',
+            'run.cl_rut' => 'Rut no valido Ej:15330467-k',
             'gender.required' => 'El genero es requerido',
             'birth_of_date.required' => 'La fecha de nacimiento es requerido',
             'client_id.required' => 'El cliente es requerido',
@@ -114,7 +116,7 @@ class ResidentController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'last_name' => 'required',
-            'run' => 'required',
+            'run' => 'required|cl_rut',
             'phone' => 'max:10|nullable',
             'mobile' => 'max:10|nullable',
             'studies' => 'nullable',

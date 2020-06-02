@@ -46,6 +46,7 @@
                                             <label for="run">Run</label>
                                             <input id="run" type="text" class="form-control @error('run') is-invalid @enderror" name="run" value="{{  $client->run }}"
                                                    required >
+                                            <label for="run">Ej:15330467-k</label>
                                             @error('run')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -57,6 +58,7 @@
                                         <div class="form-group">
                                             <label for="phone">Teléfono</label>
                                             <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $client->phone }}">
+                                            <label for="run">Ej:223339579</label>
                                             @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -68,6 +70,7 @@
                                         <div class="form-group">
                                             <label for="mobile">Celular</label>
                                             <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ $client->mobile }}">
+                                            <label for="run">Ej:+56975382446</label>
                                             @error('mobile')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

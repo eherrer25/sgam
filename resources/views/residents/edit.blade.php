@@ -46,6 +46,7 @@
                                             <label for="run">Run</label>
                                             <input id="run" type="text" class="form-control @error('run') is-invalid @enderror" name="run" value="{{  $resident->run }}"
                                                    required >
+                                            <label for="name">Ej:15330467-k</label>
                                             @error('run')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

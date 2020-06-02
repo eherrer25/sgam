@@ -120,7 +120,6 @@
 @endsection
 
 @section('script')
-    <script>
         $(document).on("click", "#show-record", function () {
             var record = $(this).data('record');
             var fullname = $(this).data('name');
@@ -128,5 +127,4 @@
             $("#titleModal").text( fullname+' - Habitación: '+room );
             $("#record-observations").html( record.observations );
         });
-    </script>
 @endsection

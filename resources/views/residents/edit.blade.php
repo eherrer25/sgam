@@ -136,10 +136,10 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="room_id">Dormitorio</label>
-                                            <select name="room_id" id="room_id" class="form-control" required>
-                                                @foreach($rooms as $room)
-                                                    <option value="{{$room->id}}" {{ $resident->room_id == $room->id ? 'selected' : ''}}>{{$room->name}}</option>
+                                            <label for="bed_id">Cama</label>
+                                            <select name="bed_id" id="bed_id" class="form-control" required>
+                                                @foreach($beds as $bed)
+                                                    <option value="{{$bed->id}}">{{ $bed->room->name .' - '.  $bed->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('room_id')

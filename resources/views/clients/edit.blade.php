@@ -56,7 +56,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="phone">Teléfono</label>
-                                            <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $client->phone }}">
+                                            <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $client->phone }}" autocomplete="off">
                                             <label for="run">Ej:223339579</label>
                                             @error('phone')
                                             <span class="invalid-feedback" role="alert">
@@ -80,7 +80,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="name">Email</label>
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{  $client->email}}">
+                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{  $client->email}}" autocomplete="off">
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -102,7 +102,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="offices">Comuna</label>
-                                            <select name="commune_id" id="communes" class="form-control" required>
+                                            <select name="commune_id" id="communes" class="form-control select2" required>
                                                 @foreach($communes as $commune)
                                                     <option value="{{$commune->id}}" {{ $client->commune->id == $commune->id ? 'selected' : ''}}>{{$commune->name}}</option>
                                                 @endforeach

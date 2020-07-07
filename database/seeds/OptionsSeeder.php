@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Bed;
 use App\Models\CivilStatus;
 use App\Models\Room;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,13 @@ class OptionsSeeder extends Seeder
             $room->name = 'hab_'."$i";
             $room->office_id = 1;
             $room->save();
+            for ($j = 1; $j < 6; $j++){
+                $bed = new Bed();
+                $bed->name = 'cama_'."$j";
+                $bed->status = 1;
+                $bed->room_id = $room->id;
+                $bed->save();
+            }
         }
 
         $civil = new CivilStatus();

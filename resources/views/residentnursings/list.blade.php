@@ -16,15 +16,27 @@
                             {{ $message }}
                         </div>
                     @endif
+
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Lista de cuidados de residentes
-                            <a href="{{route('new-nursings')}}" class="btn btn-sm btn-primary shadow-sm float-right">Asignar cuidado</a>
-                        </div>
                         <div class="card-body">
+                            @hasanyrole('admin|tens')
+                            <a href="{{route('new-nursings')}}" class="btn btn-sm btn-primary shadow-sm float-right">Asignar cuidado</a>
+                            @endhasanyrole
+                            <form action="{{route('show-nursings')}}" method="GET" class="row">
+                                <div class="form-group col-4">
+                                    <label for="date">Buscar fecha</label>
+                                    <input type="date" name="date" id="date" class="form-control">
+                                </div>
+                                <div class="form-group" style="padding-top: 35px;">
+                                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+                                    <a href="{{route('show-nursings')}}" class="btn btn-danger btn-sm"><i class="fa fa-undo"></i></a>
+                                </div>
+                            </form>
+                            <hr>
                             <table class="table table-bordered dataTable">
                                 <thead>
                                 <tr>
@@ -44,7 +56,7 @@
                                         <td>{{  $nursing->resident->full_name }}
                                             <a href="#" class="btn btn-primary btn-sm float-right" id="show-record"
                                                data-record="{{$nursing->resident->record}}" data-name="{{ $nursing->resident->full_name }}"
-                                               data-room="{{ $nursing->resident->room->name }}" data-toggle="modal" data-target="#recordModal">Ficha</a>
+                                               data-room="{{ $nursing->resident->bed->room->name.' - '.$nursing->resident->bed->name }}" data-toggle="modal" data-target="#recordModal">Ficha</a>
                                         </td>
                                         <td>{{  $nursing->nursing->name }}</td>
 

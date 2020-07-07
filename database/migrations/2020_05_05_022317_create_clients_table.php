@@ -27,6 +27,8 @@ class CreateClientsTable extends Migration
             $table->foreign('commune_id')->references('id')->on('communes');
 
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

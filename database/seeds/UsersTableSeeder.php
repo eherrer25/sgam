@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +28,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'office_id' => $office->id,
             'password' => Hash::make('123456'),
-
+            'email_verified_at' => Carbon::today(),
         ]);
 
         $user->assignRole('admin');

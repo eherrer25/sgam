@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nursing;
 use App\Models\Resident;
 use App\Models\UserResidentNursing;
-use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +29,7 @@ class HomeController extends Controller
     {
         try {
             $residents = Resident::get()->count();
-            $nursings = UserResidentNursing::orderBy('created_at');
+            $nursings = UserResidentNursing::whereDate('created_at', Carbon::today()->toDateString())->orderBy('created_at');
 
             if(Auth::user()->hasRole('cam')){
                 $nursings = $nursings->where('user_id',Auth::user()->id);

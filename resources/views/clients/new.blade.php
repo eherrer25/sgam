@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{route('client-create')}}" method="POST">
+                            <form action="{{route('client-create')}}" method="POST" autocomplete="off">
                                 @csrf
                                 <div class="row">
                                     <div class="col-4">
@@ -97,7 +97,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="commune">Comuna</label>
-                                            <select name="commune_id" id="communes" class="form-control @error('commune_id') is-invalid @enderror" required>
+                                            <select name="commune_id" id="communes" class="form-control select2 @error('commune_id') is-invalid @enderror" required>
                                                 @foreach($communes as $commune)
                                                     <option value="{{$commune->id}}">{{$commune->name}}</option>
                                                 @endforeach

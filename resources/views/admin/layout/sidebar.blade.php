@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-main sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
@@ -24,8 +24,6 @@
             <i class="fas fa-fw fa-clipboard-list"></i>
             <span>Listar cuidados</span></a>
     </li>
-
-
     <!-- Divider -->
     <hr class="sidebar-divider">
     @hasanyrole('admin|tens')
@@ -60,7 +58,19 @@
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     @endhasanyrole
+    @role('admin')
+    <div class="sidebar-heading">
+        Sistema
+    </div>
+    <li class="nav-item {{ (request()->is('admin/nursings*')) ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('nursings-list')}}">
+            <i class="fas fa-file-excel"></i>
+            <span>Reportes</span></a>
+    </li>
+    @endrole
+
     <!-- Divider -->
+    <hr class="sidebar-divider">
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

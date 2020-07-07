@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->foreign('office_id')->references('id')->on('offices');
 
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

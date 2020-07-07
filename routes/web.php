@@ -15,11 +15,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::middleware('auth')->prefix('admin')->group(function(){
+Route::middleware('auth','verified')->prefix('admin')->group(function(){
 
     Route::get('home','HomeController@index')->name('home');
+    Route::get('notifications', 'UserController@notifications');
 
     //Listar cuidados de residentes
     Route::get('list-nursings','ResidentNursingController@showNursings')->name('show-nursings');
@@ -30,6 +31,10 @@ Route::middleware('auth')->prefix('admin')->group(function(){
 
 
     Route::middleware('role:admin')->prefix('users')->group(function(){
+
+        Route::get('profile/{id}','UserController@showUser')->name('user-profile');
+        Route::post('profile','UserController@updateProfile')->name('profile-update');
+
         Route::get('list','UserController@listUsers')->name('users-list');
         Route::get('new','UserController@newUser')->name('user-new');
         Route::post('new','UserController@createUser')->name('user-create');
@@ -73,3 +78,7 @@ Route::middleware('auth')->prefix('admin')->group(function(){
 });
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

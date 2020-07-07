@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bed;
 use App\Models\CivilStatus;
 use App\Models\Client;
 use App\Models\Resident;
@@ -31,14 +32,14 @@ class ResidentController extends Controller
 
             $clients = Client::get();
             $civils = CivilStatus::get();
-            $rooms = Room::get();
+            $beds = Bed::where('status',1)->get();
 
         }catch (\Exception $e){
             report($e);
             abort(500);
         }
 
-        return view('residents.new',compact('clients','civils','rooms'));
+        return view('residents.new',compact('clients','civils','beds'));
     }
 
     public function createResident(Request $request)
@@ -48,30 +49,46 @@ class ResidentController extends Controller
             'last_name.required' => 'El apellido es requerido',
             'run.required' => 'El run es requerido',
             'run.cl_rut' => 'Rut no valido Ej:15330467-k',
+            'run.unique' => 'Rut ingresado ya existe',
             'gender.required' => 'El genero es requerido',
             'birth_of_date.required' => 'La fecha de nacimiento es requerido',
             'client_id.required' => 'El cliente es requerido',
             'civil_id.required' => 'El estado civil es requerido',
-            'room_id.required' => 'El dormitorio es requerido',
+            'bed_id.required' => 'La cama es requerida',
         ];
 
         $this->validate($request, [
             'name' => 'required',
             'last_name' => 'required',
-            'run' => 'required|cl_rut',
+            'run' => 'required|cl_rut|unique:residents',
             'phone' => 'max:10|nullable',
             'mobile' => 'max:10|nullable',
+            'birth_of_date' => 'required',
             'studies' => 'nullable',
             'profession' => 'nullable',
             'client_id' => 'required',
             'civil_id' => 'required',
-            'room_id' => 'required',
+            'bed_id' => 'required',
         ],$messages);
 
         try{
-            $input = $request->all();
 
-            $resident = Resident::create($input);
+            $resident = new Resident();
+            $resident->run = $request->run;
+            $resident->name = $request->name;
+            $resident->last_name = $request->last_name;
+            $resident->gender = $request->gender;
+            $resident->birth_of_date = $request->birth_of_date;
+            $resident->studies = $request->studies;
+            $resident->profession = $request->profession;
+            $resident->client_id = $request->client_id;
+            $resident->civil_id = $request->civil_id;
+            $resident->bed_id = $request->bed_id;
+            $resident->save();
+
+            $bed = Bed::find($request->bed_id);
+            $bed->status = 0;
+            $bed->save();
 
         }catch (\Exception $e){
             report($e);
@@ -89,14 +106,14 @@ class ResidentController extends Controller
             $resident = Resident::find($id);
             $clients = Client::get();
             $civils = CivilStatus::get();
-            $rooms = Room::get();
+            $beds = Bed::where('status',1)->get();
 
         }catch (\Exception $e){
             report($e);
             abort(500);
         }
 
-        return view('residents.edit',compact('resident','clients','civils','rooms'));
+        return view('residents.edit',compact('resident','clients','civils','beds'));
     }
 
     public function updateResident(Request $request, $id)
@@ -110,7 +127,7 @@ class ResidentController extends Controller
             'birth_of_date.required' => 'La fecha de nacimiento es requerido',
             'client_id.required' => 'El cliente es requerido',
             'civil_id.required' => 'El estado civil es requerido',
-            'room_id.required' => 'El dormitorio es requerido',
+            'bed_id.required' => 'La cama es requerida',
         ];
 
         $this->validate($request, [
@@ -121,16 +138,37 @@ class ResidentController extends Controller
             'mobile' => 'max:10|nullable',
             'studies' => 'nullable',
             'profession' => 'nullable',
+            'birth_of_date' => 'required',
             'client_id' => 'required',
             'civil_id' => 'required',
-            'room_id' => 'required',
+            'bed_id' => 'required',
         ],$messages);
 
         try{
-            $input = $request->all();
 
             $resident = Resident::find($id);
-            $resident->update($input);
+
+            if($resident->bed_id != $request->bed_id){
+                $bed1 = Bed::find($resident->bed_id);
+                $bed1->status = 1;
+                $bed1->save();
+
+                $bed2 = Bed::find($request->bed_id);
+                $bed2->status = 0;
+                $bed2->save();
+            }
+
+            $resident->run = $request->run;
+            $resident->name = $request->name;
+            $resident->last_name = $request->last_name;
+            $resident->gender = $request->gender;
+            $resident->birth_of_date = $request->birth_of_date;
+            $resident->studies = $request->studies;
+            $resident->profession = $request->profession;
+            $resident->client_id = $request->client_id;
+            $resident->civil_id = $request->civil_id;
+            $resident->bed_id = $request->bed_id;
+            $resident->save();
 
         }catch (\Exception $e){
             report($e);
@@ -143,7 +181,13 @@ class ResidentController extends Controller
 
     public function deleteResident($id)
     {
-        Resident::find($id)->delete();
+        $resident = Resident::find($id);
+
+        $bed = $resident->room;
+        $bed->status = 1;
+        $bed->save();
+
+        $resident->delete();
 
         return redirect()->route('residents-list')
             ->with('success','Residente eliminado con éxito.');

@@ -30,9 +30,9 @@ class Resident extends Model
         return $this->belongsTo(CivilStatus::class);
     }
 
-    public function room()
+    public function bed()
     {
-        return $this->belongsTo(Room::class);
+        return $this->belongsTo(Bed::class);
     }
 
     public function record()

@@ -62,6 +62,7 @@
                                                         <option value="{{$nursing->id}}">{{$nursing->name}}</option>
                                                     @endforeach
                                                 </select>
+                                                <span class="valid-feedback"></span>
                                                 @error('nursing_id')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                                 @enderror
@@ -71,6 +72,7 @@
                                             <div class="form-group">
                                                 <label for="start">Inicio</label>
                                                 <input type="time" name="start" id="start" class="form-control" required>
+                                                <span class="invalid-feedback"></span>
                                                 @error('start')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                                 @enderror
@@ -80,13 +82,14 @@
                                             <div class="form-group">
                                                 <label for="stop">Termino</label>
                                                 <input type="time" name="stop" id="stop" class="form-control" required>
+                                                <span class="invalid-feedback"></span>
                                                 @error('stop')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                                 @enderror
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button type="submit" class="btn btn-primary float-right">Agregar</button>
+                                            <button type="submit" id="btn-submit" class="btn btn-primary float-right">Agregar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -97,4 +100,52 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('script')
+        $('#stop').focusout(function () {
+            var start = $('#start').val();
+            var stop = $(this).val();
+
+            if(start !== "" && stop !== ""){
+                //convert both time into timestamp
+                var stt = new Date("November 13, 2013 " + start);
+                stt = stt.getTime();
+                var endt = new Date("November 13, 2013 " + stop);
+                endt = endt.getTime();
+                var _this = $(this);
+                if(stt >= endt){
+                    _this.addClass('is-invalid');
+                    _this.parent().find('.invalid-feedback').text('La hora de termino no puede ser menor o igual a la de inicio.');
+                    $('#btn-submit').prop('disabled', true);
+                }else{
+                    $('#start').removeClass('is-invalid');
+                    $(this).removeClass('is-invalid');
+                    $('#btn-submit').prop('disabled', false);
+                }
+            }
+        });
+        $('#start').focusout(function () {
+            var start = $(this).val();
+            var stop = $('#stop').val();
+
+            if(start !== "" && stop !== ""){
+                //convert both time into timestamp
+                var stt = new Date("November 13, 2013 " + start);
+                stt = stt.getTime();
+                var endt = new Date("November 13, 2013 " + stop);
+                endt = endt.getTime();
+                var _this = $(this);
+                if(stt >= endt){
+                    _this.addClass('is-invalid');
+                    _this.parent().find('.invalid-feedback').text('La hora de inicio no puede ser mayor o igual a la de termino.');
+                    $('#btn-submit').prop('disabled', true);
+                }else{
+                    $('#stop').removeClass('is-invalid');
+                    $(this).removeClass('is-invalid');
+                    $('#btn-submit').prop('disabled', false);
+                }
+            }
+        });
+
 @endsection

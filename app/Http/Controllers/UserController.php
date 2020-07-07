@@ -10,9 +10,49 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function __construct()
+
+    public function notifications()
     {
-        $this->middleware('auth');
+        return auth()->user()->unreadNotifications()->limit(5)->get()->toArray();
+    }
+
+    public function showUser($id)
+    {
+        try {
+            $user = User::findOrFail($id);
+
+            return view('profile',compact('user'));
+
+        }catch (\Exception $e){
+            report($e);
+            abort(500);
+        }
+    }
+
+    public function updateProfile(Request $request)
+    {
+        try {
+
+            $this->validate($request, [
+                'name' => 'required',
+                'last_name' => 'required',
+            ]);
+
+            $user = User::findOrFail($request->id);
+            if($request->password != null){
+                $user->password = Hash::make($request->password);
+            }
+            $user->name = $request->name;
+            $user->last_name = $request->last_name;
+            $user->save();
+
+            return redirect()->back()->with('success','Perfil modificado con éxito');
+
+
+        }catch (\Exception $e){
+            report($e);
+            abort(500);
+        }
     }
 
     public function listUsers(Request $request)

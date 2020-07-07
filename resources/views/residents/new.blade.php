@@ -39,6 +39,7 @@
                                         <div class="form-group">
                                             <label for="run">Run</label>
                                             <input id="run" type="text" class="form-control @error('run') is-invalid @enderror" name="run" value="{{ old('run') }}" required autocomplete="run" placeholder="Ej:15330467-k">
+                                            <span class="invalid-feedback" role="alert"></span>
                                             @error('run')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -65,7 +66,7 @@
                                         <div class="form-group">
                                             <label for="birth_of_date">Fecha de nacimiento</label>
                                             <input id="birth_of_date" type="date" class="form-control @error('birth_of_date') is-invalid @enderror" name="birth_of_date" value="{{ old('birth_of_date') }}"
-                                                   autocomplete="birth_of_date">
+                                                   autocomplete="birth_of_date" required>
                                             @error('birth_of_date')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -100,9 +101,9 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="client_id">Apoderado</label>
-                                            <select name="client_id" id="client_id" class="form-control" required>
+                                            <select name="client_id" id="client_id" class="form-control select2" required>
                                                 @foreach($clients as $client)
-                                                    <option value="{{$client->id}}">{{$client->name}}</option>
+                                                    <option value="{{$client->id}}">{{$client->full_name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('client_id')
@@ -129,10 +130,10 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="room_id">Dormitorio</label>
-                                            <select name="room_id" id="room_id" class="form-control" required>
-                                                @foreach($rooms as $room)
-                                                    <option value="{{$room->id}}">{{$room->name}}</option>
+                                            <label for="bed_id">Cama</label>
+                                            <select name="bed_id" id="bed_id" class="form-control" required>
+                                                @foreach($beds as $bed)
+                                                    <option value="{{$bed->id}}">{{ $bed->room->name .' - '.  $bed->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('room_id')

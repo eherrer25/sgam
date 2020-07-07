@@ -78,7 +78,7 @@ class ClientController extends Controller
         }
 
         return redirect()->route('clients-list')
-            ->with('success','Cliente creado con éxito.');
+            ->with('success','Apoderado creado con éxito.');
     }
 
     public function editClient($id)
@@ -133,7 +133,7 @@ class ClientController extends Controller
         }
 
         return redirect()->route('clients-list')
-            ->with('success','Cliente modificado con éxito.');
+            ->with('success','Apoderado modificado con éxito.');
     }
 
     public function deleteClient($id)
@@ -141,6 +141,6 @@ class ClientController extends Controller
         Client::find($id)->delete();
 
         return redirect()->route('clients-list')
-            ->with('success','Cliente eliminado con éxito.');
+            ->with('success','Apoderado eliminado con éxito.');
     }
 }

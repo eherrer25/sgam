@@ -34,7 +34,7 @@
                                         <th>Nombre</th>
                                         <th>Run</th>
                                         <th>Apoderado</th>
-                                        <th>Dormitorio</th>
+                                        <th>Ubicación</th>
                                         <th>Ficha</th>
                                         <th width="280px" class="nosort">Acciones</th>
                                     </tr>
@@ -46,7 +46,7 @@
                                         <td>{{  $resident->full_name }}</td>
                                         <td>{{  $resident->run }}</td>
                                         <td>{{  $resident->client->name }}</td>
-                                        <td>{{  $resident->room->name }}</td>
+                                        <td>{{ $resident->bed->room->name .' - '. $resident->bed->name }}</td>
                                         <td><a class="btn btn-primary btn-sm" href="{{ route('resident-record', $resident->id) }}"> Ver Ficha</a></td>
                                         <td>
                                             <a class="btn btn-primary btn-sm" href="{{ route('resident-edit', $resident->id) }}"><i class="fa fa-edit"></i> Editar</a>

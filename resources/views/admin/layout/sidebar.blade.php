@@ -24,9 +24,15 @@
             <i class="fas fa-fw fa-clipboard-list"></i>
             <span>Listar cuidados</span></a>
     </li>
+    @hasanyrole('admin|tens')
+    <li class="nav-item {{ (request()->is('admin/list-alarms')) ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('show-alarms') }}">
+            <i class="fas fa-fw fa-clock"></i>
+            <span>Listar alarmas</span></a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
-    @hasanyrole('admin|tens')
+    
     <!-- Heading -->
     <div class="sidebar-heading">
         Administración
@@ -67,10 +73,11 @@
             <i class="fas fa-file-excel"></i>
             <span>Reportes</span></a>
     </li>
-    @endrole
-
     <!-- Divider -->
     <hr class="sidebar-divider">
+    @endrole
+
+    
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

@@ -3,14 +3,15 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
-class ReminderTask extends Notification
+class AlarmNotification extends Notification implements ShouldQueue
 {
-    use Queueable;
+    use Queueable,SerializesModels;
     protected $data;
 
     /**
@@ -34,6 +35,13 @@ class ReminderTask extends Notification
         return ['database','broadcast'];
     }
 
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+
     public function toDatabase($notifiable)
     {
         return [
@@ -47,17 +55,17 @@ class ReminderTask extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
-    {
-        return [
-            'data_id' => $this->data,
-        ];
-    }
+//    public function toArray($notifiable)
+//    {
+//        return [
+//            'data_id' => $this->data,
+//        ];
+//    }
 
     public function toBroadcast($notifiable)
     {
         return (new BroadcastMessage([
             'data_id' => $this->data,
-        ]))->onConnection('sync');
+        ]))->onConnection('database');
     }
 }

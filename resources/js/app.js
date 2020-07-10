@@ -16,34 +16,44 @@ import Echo from "laravel-echo";
 window.Echo = new Echo({
     authEndpoint : '/sgam/public/broadcasting/auth',
     broadcaster: 'pusher',
-    key: '7757e6e9a065c75ddbfc',
+    key: '0cd4f5e442d158983448',
     cluster: 'us2',
-    encrypted: true
+    forceTLS: true,
+    encrypted: true,
 });
 
 var notifications = [];
 
 const NOTIFICATION_TYPES = {
-    reminder: 'App\\Notifications\\ReminderTask'
+    reminder: 'App\\Notifications\\ReminderTask',
+    alarm: 'App\\Notifications\\AlarmNotification',
 };
-
-$(document).ready(function() {
-    if(Laravel.userId) {
-        $.get('/sgam/public/admin/notifications', function (data) {
-            addNotifications(data, ".noti-list");
+if(Laravel.userId) {
+    $.get('/sgam/public/admin/notifications', function (data) {
+        addNotifications(data, ".noti-list");
+        if(data.length > 0){
             Notification.requestPermission( permission => {
-                let notification = new Notification('New post alert!');
+                if(data.type === NOTIFICATION_TYPES.reminder) {
+                    let notification = new Notification('Nuevo cuidado!');
+                } else if(data.type === NOTIFICATION_TYPES.alarm) {
+                    let notification = new Notification('Nueva alarma!');
+                }
             });
+        }
+    });
+
+    window.Echo.private(`App.User.${Laravel.userId}`).notification((notification) => {
+        addNotifications([notification], '.noti-list');
+        Notification.requestPermission( permission => {
+            if(notification.type === NOTIFICATION_TYPES.reminder) {
+                let notification = new Notification('Nuevo cuidado!');
+            } else if(notification.type === NOTIFICATION_TYPES.alarm) {
+                let notification = new Notification('Nueva alarma!');
+            }
+
         });
-
-        window.Echo.private(`App.User.${Laravel.userId}`)
-            .notification((notification) => {
-                console.log(notification);
-                addNotifications([notification], '.noti-list');
-            });
-    }
-});
-
+    });
+}
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
@@ -86,9 +96,8 @@ function routeNotification(notification) {
     var to = `?read=${notification.id}`;
     if(notification.type === NOTIFICATION_TYPES.reminder) {
         to = '/sgam/public/admin/list-nursings'+to;
-    } else if(notification.type === NOTIFICATION_TYPES.newPost) {
-        const postId = notification.data.post_id;
-        to = `posts/${postId}` + to;
+    } else if(notification.type === NOTIFICATION_TYPES.alarm) {
+        to = '/sgam/public/admin/list-alarms'+to;
     }
     return to;
 }
@@ -96,10 +105,9 @@ function routeNotification(notification) {
 function makeNotificationText(notification) {
     var text = '';
     if(notification.type === NOTIFICATION_TYPES.reminder) {
+        text += `<strong>Nuevo cuidado</strong>`;
+    } else if(notification.type === NOTIFICATION_TYPES.alarm) {
         text += `<strong>Nueva alarma</strong>`;
-    } else if(notification.type === NOTIFICATION_TYPES.newPost) {
-        const name = notification.data.following_name;
-        text += `<strong>${name}</strong> published a post`;
     }
     return text;
 }

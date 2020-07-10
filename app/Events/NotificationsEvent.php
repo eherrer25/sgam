@@ -9,8 +9,9 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class NotificationsEvent
+class NotificationsEvent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -33,6 +34,6 @@ class NotificationsEvent
      */
     public function broadcastOn()
     {
-        return new Channel('notifications');
+        return new PrivateChannel('notifications');
     }
 }

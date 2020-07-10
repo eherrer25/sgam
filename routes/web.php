@@ -27,7 +27,12 @@ Route::middleware('auth','verified')->prefix('admin')->group(function(){
     Route::get('new-nursings','ResidentNursingController@newNursings')->name('new-nursings');
     Route::post('save-nursings','ResidentNursingController@saveNursings')->name('save-nursings');
     Route::post('change-status','ResidentNursingController@changeStatus')->name('nursing-resident-change');
-    Route::delete('delete/{id}','ResidentNursingController@deleteNursing')->name('nursing-resident-delete');
+    Route::delete('delete-nursing/{id}','ResidentNursingController@deleteNursing')->name('nursing-resident-delete');
+
+    Route::get('list-alarms','AlarmResidentController@showAlarms')->name('show-alarms');
+    Route::get('new-alarm','AlarmResidentController@newAlarm')->name('new-alarm');
+    Route::post('new-alarm','AlarmResidentController@saveAlarm')->name('save-alarm');
+    Route::delete('delete-alarm/{id}','AlarmResidentController@deleteAlarm')->name('delete-alarm');
 
 
     Route::middleware('role:admin')->prefix('users')->group(function(){

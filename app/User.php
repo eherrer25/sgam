@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\NotificationsEvent;
 use App\Models\Office;
 use App\Models\Resident;
 use App\Models\UserResidentNursing;

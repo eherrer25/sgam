@@ -38,7 +38,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="run">Run</label>
-                                            <input id="run" type="text" class="form-control @error('run') is-invalid @enderror" name="run" value="{{ old('run') }}" required autocomplete="run" placeholder="Ej:15330467-k">
+                                            <input id="run" type="text" class="form-control run @error('run') is-invalid @enderror" name="run" value="{{ old('run') }}" required autocomplete="run" placeholder="Ej:15330467-k">
                                             <span class="invalid-feedback" role="alert"></span>
                                             @error('run')
                                             <span class="invalid-feedback" role="alert">

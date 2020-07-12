@@ -38,8 +38,8 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="run">Run</label>
-                                            <input id="run" type="text" class="form-control @error('run') is-invalid @enderror" name="run" value="{{ old('run') }}" required>
-                                            <span class="invalid-feedback"></span>
+                                            <input id="run" type="text" class="form-control run @error('run') is-invalid @enderror" name="run" value="{{ old('run') }}" required autocomplete="run" placeholder="Ej:15330467-k">
+                                            <span class="invalid-feedback" role="alert"></span>
                                             @error('run')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -52,11 +52,6 @@
                                             <label for="phone">Teléfono</label>
                                             <input id="phone" type="text" class="form-control justNumbers @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}">
                                             <span class="invalid-feedback">Debe ingresar un teléfono válido.</span>
-                                            @error('phone')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -64,11 +59,6 @@
                                             <label for="mobile">Celular</label>
                                             <input id="mobile" type="text" class="form-control justNumbers @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}">
                                             <span class="invalid-feedback">Debe ingresar un celular válido.</span>
-                                            @error('mobile')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -76,11 +66,6 @@
                                             <label for="email">Email</label>
                                             <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
                                             <span class="invalid-feedback">Debe ingresar un email válido.</span>
-                                            @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-4">

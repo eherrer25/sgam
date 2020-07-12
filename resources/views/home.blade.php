@@ -50,11 +50,6 @@
                                             <div class="col-auto">
                                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$residents}}</div>
                                             </div>
-                                            {{--                                                <div class="col">--}}
-                                            {{--                                                    <div class="progress progress-sm mr-2">--}}
-                                            {{--                                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>--}}
-                                            {{--                                                    </div>--}}
-                                            {{--                                                </div>--}}
                                         </div>
                                     </div>
                                     <div class="col-auto">
@@ -66,6 +61,55 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Comparación tiempos de cuidados realizados al {{\Carbon\Carbon::now()->format('d-m-Y')}}</h6>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Tiempo objetivo</th>
+                                        <th>Total objetivo</th>
+                                        <th>Tiempo real</th>
+                                        <th>Total real</th>
+                                        <th>Cumple</th>
+                                    </tr>
+                                    @foreach($nursings->where('status','realizado') as $nursing)
+                                        <tr>
+                                            <td>{{$nursing->user->full_name}}</td>
+                                            <td>{{$nursing->start}} - {{$nursing->stop}}</td>
+                                            <td>
+                                                @php
+                                                    $startTime = \Carbon\Carbon::parse($nursing->start);
+                                                    $finTime = \Carbon\Carbon::parse($nursing->stop);
+                                                    $totalTime = $finTime->diffInMinutes($startTime);
+                                                @endphp
+                                                {{$totalTime}} mins.
+                                            </td>
+                                            <td>{{$nursing->start_unreal}} - {{$nursing->stop_unreal}}</td>
+                                            <td>
+                                                @php
+                                                    $startTime2 = \Carbon\Carbon::parse($nursing->start_unreal);
+                                                    $finTime2 = \Carbon\Carbon::parse($nursing->stop_unreal);
+                                                    $totalTime2 = $finTime2->diffInMinutes($startTime2);
+                                                @endphp
+                                                {{$totalTime2}} mins.
+                                            </td>
+                                            <td>
+                                                @if($totalTime2 <= $totalTime)
+                                                    <span class="badge badge-success">Sí</span>
+                                                @else
+                                                    <span class="badge badge-danger">No</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-12">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">

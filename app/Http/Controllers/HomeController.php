@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ResidentsExport;
 use App\Models\Resident;
 use App\Models\UserResidentNursing;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
 {
@@ -42,5 +45,27 @@ class HomeController extends Controller
         }
 
         return view('home', compact('residents','nursings'));
+    }
+
+    public function viewReport(Request $request)
+    {
+        try {
+            $month = $request->month;
+            if($month){
+                $residents = Resident::with([
+                    'nursings' => function ($query) use($month) {
+                        $query->whereMonth('created_at', $month);
+                    }
+                ])->get();
+                $name = 'reporte-'.$month.'.xlsx';
+                return Excel::download(new ResidentsExport($residents,$month), $name);
+            }
+
+        }catch (\Exception $e){
+            report($e);
+            abort(500);
+        }
+
+        return view('report');
     }
 }

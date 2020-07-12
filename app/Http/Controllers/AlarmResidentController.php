@@ -72,8 +72,6 @@ class AlarmResidentController extends Controller
             $new->save();
 
             $when = Carbon::parse($request->start)->timezone('America/Santiago');
-//            dd($when);
-//            $when = Carbon::createFromFormat('Y-m-d H:i:s',$when , 'UTC')->setTimezone('America/Santiago');
 
             $user->notify((new AlarmNotification($new))->delay($when));
 

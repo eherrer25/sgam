@@ -21,6 +21,7 @@ Route::middleware('auth','verified')->prefix('admin')->group(function(){
 
     Route::get('home','HomeController@index')->name('home');
     Route::get('notifications', 'UserController@notifications');
+    Route::get('report', 'HomeController@viewReport')->name('view-report');
 
     //Listar cuidados de residentes
     Route::get('list-nursings','ResidentNursingController@showNursings')->name('show-nursings');

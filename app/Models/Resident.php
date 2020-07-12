@@ -20,11 +20,6 @@ class Resident extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function office()
-    {
-        return $this->belongsTo(Office::class);
-    }
-
     public function civil()
     {
         return $this->belongsTo(CivilStatus::class);

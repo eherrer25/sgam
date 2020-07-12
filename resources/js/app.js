@@ -31,6 +31,7 @@ const NOTIFICATION_TYPES = {
 if(Laravel.userId) {
     $.get('/sgam/public/admin/notifications', function (data) {
         addNotifications(data, ".noti-list");
+
         if(data.length > 0){
             Notification.requestPermission( permission => {
                 if(data.type === NOTIFICATION_TYPES.reminder) {

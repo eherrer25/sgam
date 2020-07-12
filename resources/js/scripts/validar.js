@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 $(".justNumbers").keypress(function (e) {
     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
         $(this).addClass('is-invalid');
@@ -49,7 +51,8 @@ $('#email').keyup(function () {
         }
     }
 });
-$('#run').keyup(function (e) {
+$('.run').keyup(function (e) {
+    console.log('su');
     e.preventDefault();
     validarRun($(this));
 });
@@ -139,3 +142,4 @@ function calculateDV(rut) {
     if (dvEsperado === 11) return "0";
     return `${dvEsperado}`;
 }
+});

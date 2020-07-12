@@ -14,7 +14,7 @@ window.Pusher = require('pusher-js');
 import Echo from "laravel-echo";
 
 window.Echo = new Echo({
-    authEndpoint : '/broadcasting/auth',
+    authEndpoint : '/sgam/public/broadcasting/auth',
     broadcaster: 'pusher',
     key: '0cd4f5e442d158983448',
     cluster: 'us2',
@@ -29,7 +29,7 @@ const NOTIFICATION_TYPES = {
     alarm: 'App\\Notifications\\AlarmNotification',
 };
 if(Laravel.userId) {
-    $.get('/admin/notifications', function (data) {
+    $.get('/sgam/public/admin/notifications', function (data) {
         addNotifications(data, ".noti-list");
 
         if(data.length > 0){
@@ -96,9 +96,9 @@ function makeNotification(notification) {
 function routeNotification(notification) {
     var to = `?read=${notification.id}`;
     if(notification.type === NOTIFICATION_TYPES.reminder) {
-        to = '/admin/list-nursings'+to;
+        to = '/sgam/public/admin/list-nursings'+to;
     } else if(notification.type === NOTIFICATION_TYPES.alarm) {
-        to = '/admin/list-alarms'+to;
+        to = '/sgam/public/admin/list-alarms'+to;
     }
     return to;
 }

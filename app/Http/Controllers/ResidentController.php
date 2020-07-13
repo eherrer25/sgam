@@ -17,6 +17,8 @@ class ResidentController extends Controller
 
             $data = Resident::orderBy('id','ASC')->get();
 
+            dd($data);
+
         }catch (\Exception $e){
             report($e);
             abort(500);

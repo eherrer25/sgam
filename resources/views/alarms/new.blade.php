@@ -88,7 +88,7 @@
         $('#start').focusout(function () {
             var start = $(this).val();
             var dt = new Date();
-            var compare = dt.getHours() + ":" + dt.getMinutes();
+            var compare = dt.getHours() + ":" + (dt.getMinutes()<10?'0':'') + dt.getMinutes();
             var _this = $(this);
 
             if(start <= compare){

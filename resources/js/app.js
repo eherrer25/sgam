@@ -33,12 +33,16 @@ if(Laravel.userId) {
         addNotifications(data, ".noti-list");
 
         if(data.length > 0){
+
             Notification.requestPermission( permission => {
-                if(data.type === NOTIFICATION_TYPES.reminder) {
-                    let notification = new Notification('Nuevo cuidado!');
-                } else if(data.type === NOTIFICATION_TYPES.alarm) {
-                    let notification = new Notification('Nueva alarma!');
-                }
+                data.forEach( function(valor) {
+                    if(valor.type === NOTIFICATION_TYPES.reminder) {
+                        let notify = new Notification('Nuevo cuidado!');
+                    } else if(valor.type === NOTIFICATION_TYPES.alarm) {
+                        let notify = new Notification('Alarma:'+JSON.stringify(valor.data.data_id.name));
+                    }
+                });
+
             });
         }
     });
@@ -47,11 +51,10 @@ if(Laravel.userId) {
         addNotifications([notification], '.noti-list');
         Notification.requestPermission( permission => {
             if(notification.type === NOTIFICATION_TYPES.reminder) {
-                let notification = new Notification('Nuevo cuidado!');
+                let notify = new Notification('Nuevo cuidado!');
             } else if(notification.type === NOTIFICATION_TYPES.alarm) {
-                let notification = new Notification('Nueva alarma!');
+                let notify = new Notification('Alarma:'+notification.data_id.name);
             }
-
         });
     });
 }
@@ -106,9 +109,15 @@ function routeNotification(notification) {
 function makeNotificationText(notification) {
     var text = '';
     if(notification.type === NOTIFICATION_TYPES.reminder) {
+
         text += `<strong>Nuevo cuidado</strong>`;
     } else if(notification.type === NOTIFICATION_TYPES.alarm) {
-        text += `<strong>Nueva alarma</strong>`;
+        if(notification.data_id){
+            text += `<strong>`+notification.data_id.name+`</strong>`;
+        }else{
+            text += `<strong>`+notification.data.data_id.name+`</strong>`;
+        }
+
     }
     return text;
 }
